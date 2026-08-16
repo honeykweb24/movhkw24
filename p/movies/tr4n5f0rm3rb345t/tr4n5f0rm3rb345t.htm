@@ -1,0 +1,685 @@
+<! DOCTYPE html> 
+<html>
+
+<head>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+<meta charset="utf-8" />
+<title></title>
+<meta name="description" property="og:description" content="" />
+<meta name="author" content="Sam Potts" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="icon" href="https://cdn.plyr.io/static/icons/favicon.ico" />
+<link rel="icon" type="image/png" href="https://cdn.plyr.io/static/icons/32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="https://cdn.plyr.io/static/icons/16x16.png" sizes="16x16" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.plyr.io/static/icons/180x180.png" />
+
+<meta property="og:title" content="" />
+<meta property="og:site_name" content="Plyr" />
+<meta property="og:url" content="https://plyr.io" />
+<meta property="og:image" content="https://cdn.plyr.io/static/icons/1200x630.png" />
+
+
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/demo.css" />
+
+<link rel="preload" as="font" crossorigin type="font/woff2" href="https://cdn.plyr.io/static/fonts/gordita-medium.woff2" />
+<link rel="preload" as="font" crossorigin type="font/woff2" href="https://cdn.plyr.io/static/fonts/gordita-bold.woff2" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132699580-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-132699580-1');
+    </script>
+	
+	<!-- Ds R c -->
+	
+	<script type="text/javascript">
+  function dcm()
+  {
+    document.getElementById("page").oncontextmenu = function(){alert("Restricted By QS Consultants !"); return false;};   
+  };    
+    
+</script>
+	
+	
+	<script type="text/javascript">
+	function fullscreenchanged(event) {
+  // document.fullscreenElement will point to the element that
+  // is in fullscreen mode if there is one. If not, the value
+  // of the property is null.
+  if (document.fullscreenElement) {
+    console.log(`Element: ${document.fullscreenElement.id} entered fullscreen mode.`);
+  } else {
+    console.log('Leaving fullscreen mode.');
+  }
+};
+
+const el = document.getElementById('fullscreen-div');
+
+el.addEventListener('fullscreenchange', fullscreenchanged);
+// or
+el.onfullscreenchange = fullscreenchanged;
+
+// When the toggle button is clicked, enter/exit fullscreen
+document.getElementById('toggle-fullscreen').addEventListener('click', (event) => {
+  if (document.fullscreenElement) {
+    // exitFullscreen is only available on the Document object.
+    document.exitFullscreen();
+  } else {
+    el.requestFullscreen();
+  }
+});
+	
+	</script>
+	
+	
+<style>	
+
+/* Change the background color of the button when hovered 
+#0000FF blue , #4CAF50;  Green , #3e8e41;  light gren , light blue #ADD8E6 , green #00FF00 , */
+
+.buttonep {
+			background-color: #0684C4;
+			border: none;
+			color: white;
+			padding: 2px 4px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 10px;
+			margin: 2px 1px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+			
+		
+		.buttonep:hover {
+			background-color: #8EBF6E; /* light green*/
+		}
+		.buttonep:clicked {
+			background-color: green; /* Green */
+		}
+		
+		.buttonep:focus {
+			background-color: #006805; /* Green or blue */
+		}
+		
+		
+		
+	
+	.visually-hidden {
+    position: absolute;
+    left: -100vw;
+}
+
+.dropdown-header::after {
+    content: "Season 01";
+}
+
+#option1:checked ~ .dropdown-header::after {
+    content: "Episode 1";
+}
+
+#option2:checked ~ .dropdown-header::after {
+    content: "Episode 2";
+}
+
+#option3:checked ~ .dropdown-header::after {
+    content: "Episode 3";
+}
+
+.answer::after {
+    content: "";
+}
+
+#option1:checked ~ .answer::after {
+    content: "Episode  1";
+}
+
+#option2:checked ~ .answer::after {
+    content: "Episode 2";
+}
+
+#option3:checked ~ .answer::after {
+    content: "Episode 3";
+}
+
+.dropdown:hover {
+  background-color: blue;
+}
+
+#dropdown:checked ~ .dropdown {
+  display: inline;
+}
+
+.dropdown {
+  display: none;
+}
+
+
+
+
+
+</style>	
+	
+<script>
+
+/*
+play=<iframe id="odysee-iframe" width="560" height="315" src="https://odysee.com/$/embed/@honeykweb11:2/tr4n5f0rm3r5-2023-1bg-72p-hnd_HD-yt:c?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj" allowfullscreen></iframe>
+
+down=https://odysee.com/$/download/tr4n5f0rm3r5-2023-1bg-72p-hnd_HD-yt/c56ec18b7a429cd4f0d4fccaf1868ab5b9167ad2
+
+ 
+  */
+
+	//
+let episodetoplay = "pending";
+let episodename = "giveitname";
+let episodedownload = "anything";
+ let boxes = document.getElementsByName("box");
+
+
+function s01e01()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/tr4n5f0rm3r5-2023-1bg-72p-hnd_HD-yt:c?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true";
+  episodename = "Watching T r a n s f o r m e r s  B e a s t Hindi 2023 ";
+  episodedownload = "https://odysee.com/$/download/tr4n5f0rm3r5-2023-1bg-72p-hnd_HD-yt/c56ec18b7a429cd4f0d4fccaf1868ab5b9167ad2";
+  }
+
+function s01e02()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck-2--80bm-72p_HD:4?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true&nodownload";
+episodename = "Watching Part 02 ";
+episodedownload = "https://odysee.com/$/download/j0hnw1ck-2--80bm-72p_HD/4e97874a1a044cda193a38be8c736de14a65f312";
+}
+
+/*
+<iframe id="odysee-iframe" width="560" height="315" src="https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck-3-12bg-72p:d?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj" allowfullscreen></iframe>
+*/
+
+function s01e03()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck-3-12bg-72p:d?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true&nodownload";
+episodename = "Watching part 03 ";
+episodedownload = "https://odysee.com/$/download/j0hnw1ck-3-12bg-72p/dd2d49efd16e8ab0fbec40651325c37fd0de7ad9";
+}
+
+function s01e04()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck4-8bm-72p:c?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true&&aria-valuenow=6";
+//&sound=true&volume=50&autostart=true&unmute=true&mute=false
+  episodename = "Watching part 04 ";
+  episodedownload = "https://odysee.com/$/download/j0hnw1ck4-8bm-72p/c245b7049b2259b7791393cf9c9d335e98144929";
+   
+  }
+  
+  $(window).load(function()  {
+    var e = $.Event('keydown', { keyCode: 77 });// right arrow key
+    setTimeout(function() {
+    $(document).trigger(e);
+             }, 2000);
+			 alert("ok");
+});
+
+
+
+
+
+
+/*
+$(document).ready(()=>{
+       $('buttonn').on('click', ()=>{
+           let e = $.Event('keypress');
+           e.key = 'f';
+           $(document).trigger(e);
+           
+           
+             
+       })
+   });
+
+*/
+
+
+
+function pressm2()
+		{
+
+	setTimeout(function() {
+	
+															
+								$(document).ready(()=>{
+															document.getElementById("ifra").focus();
+														   let e = $.Event('keypress');
+														   e.key = 'f';
+														   document.getElementById("ifra").focus();
+														   $("ifra").trigger(e);
+														   document.getElementById("demo").innerHTML += e.key;
+														   
+															 
+													   });
+								
+								
+								
+								
+							/*
+	
+							$(function () {
+							
+								
+								document. getElementById("box"). focus();
+								var e = $.Event('keypress');
+								//e.key = 'f';
+								e.which = 70; // Character 'm'
+								document. getElementById("box"). focus();
+								$(document).trigger(e);
+								//sleep(2000);
+								document. getElementById("box"). focus();
+								document.getElementById("demo").innerHTML = e;
+								//alert("okl");
+							});
+							
+							
+							*/
+						  }
+			,4000);		  
+	    }
+
+  function pressm()
+		{
+   
+	    // sleep 7 sec
+		 //sleep(3000); 
+		 
+		 
+//		 https://www.toptal.com/developers/keycode  javascript code for m keycode is 77 , right arrow is 39 , enter key is 17 
+		//$(window).load(function()  {
+		
+    //var e = $.Event('keydown', { keyCode: 77 });// right arrow key
+
+
+
+
+
+
+
+ /*
+   var e = $.Event('keydown', { keyCode: 77 });// right arrow key
+    
+setTimeout(function() {
+    $(document).trigger(e);
+             }, 6000);
+            
+			const myJSON = JSON.stringify(e);
+	alert(myJSON);
+}
+   
+   */
+   
+   // $(document).trigger(e);
+    //         alert("m pressd"s);
+		
+	}
+  
+
+
+
+function s01e05()
+{ episodetoplay = "https://odysee.com/$/embed/@hktest16:2/544z4-kh4b4r-s01e05_HD:3?r=WbkmcpUYEkbnmbjuNyeSXfXJyxTCk44G&autoplay=true&nodownload";
+episodename = "Watching Season 01 Episode 05 ";
+episodedownload = "anything";
+}
+
+function s01e06()
+{ episodetoplay = "https://odysee.com/$/embed/@hktest16:2/544z4-kh4b4r-s01e06_HD:3?r=WbkmcpUYEkbnmbjuNyeSXfXJyxTCk44G&autoplay=true&nodownload";
+episodename = "Watching Season 01 Episode 06 ";
+episodedownload = "anything";
+}
+
+function myFunction() {
+
+//.const str = 'Hello' + ' ' + 'World';
+//.let text1 = "t1";
+//.let text2 = "t2";
+//.let text3 = text1 + " " + text2;
+
+//.let s01ep01 = "";
+//.let s01ep02 = "";s
+//.let s01ep03 = "";
+//.let s01ep04 = "";
+//.let s01ep05 = "";
+//.let s01ep06 = "";
+//.let s01ep07 = "";
+//.let s01ep08 = "";
+
+let moviespath = episodetoplay ;
+//.let moviespath = "https://odysee.com/$/embed/f4rz1s01e01-48p-30bm:2?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&autoplay=true&nodownload";
+
+let result = "<div  id='box' style='width: 320px; height: 240px; position: relative;'> "
+
+				+"<div id='ifra'>"
+				+ "<iframe src=" + moviespath +  " ' width='320' height='240' id='ifr' frameborder='0' scrolling='no' seamless='' allowfullscreen='yes'  '> </iframe>"
+				+"</div>"
+				
+				+ "<div id='hide odysee logo when u click the video ' style='width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;'>&nbsp;</div>"
+				+ "<div id='transparent div to disable right click over video to save ' style='width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;'>&nbsp;</div>"
+		      +"</div>"
+			  
+		    +"<div id='episodename' >" + episodename + "</div>"
+			+"<div id='episodedownload' > <a href='" + episodedownload + "'>Download</a></div>";
+			
+
+//.alert ("start");
+//<a href="javascript:void(0)" onclick="location.href='http://www.google.com'">Hide Link</a>
+//.let result1 = "<iframe src=" + moviespath  ;
+//.let result1 = "'<iframe src='" + moviespath +  " width='320' height='240' frameborder='0' scrolling='no' seamless='' allowfullscreen='yes'> </iframe>" + "<div id='hide odysee logo when u click the video ' style='width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;'>&nbsp;</div>" + "<div id='transparent div to disable right click over video to save ' style='width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;'>&nbsp;</div>"; 
+
+
+document.getElementById("eg").innerHTML = result;
+//alert("done");
+}
+
+</script>
+	
+	
+	
+</head>
+<body class="page"  onload="dcm();" oncontextmenu="return false">
+
+<script>
+ $(window).load(function()  {
+    var e = $.Event('keydown', { keyCode: 77 });// right arrow key
+    setTimeout(function()
+	{
+    $(document).trigger(e);
+    }        
+	alert("ok");
+});
+</script>
+<!--
+<iframe id="odysee-iframe" width="560" height="315" src="https://odysee.com/$/embed/@hktest16:2/544z4-kh4b4r-s01e01_HD:0?r=WbkmcpUYEkbnmbjuNyeSXfXJyxTCk44G&autoplay=true" allowfullscreen></iframe>
+
+<h1>fullscreenchange event example</h1>
+<div id="fullscreen-div">
+  <button id="toggle-fullscreen">Toggle Fullscreen Mode</button>
+</div>
+<!--
+<div class="grid">
+
+<main>
+<!--
+<div id="container">
+<video controls crossorigin playsinline data-poster="../../movies/v4dh/v4dhposter.png" id="player">
+
+<source src="https://player.odycdn.com/api/v4/streams/free/v4dh-36p-283bm-2023-yttm/32f2c77d71a787a9e307f3dcc2844b5a929a3701/f1e1cd" type="video/mp4" size="360" />
+<source src="https://player.odycdn.com/api/v4/streams/free/v4dh-72p-770bm-fullhd-2023-yttm/6e7ebc8ff4daf15ae2af3491001d05bba49c30f2/4089cd" type="video/mp4" size="480" />
+<!--
+<source src="https://player.odycdn.com/api/v4/streams/free/v4dh-72p-770bm-fullhd-2023-yttm/6e7ebc8ff4daf15ae2af3491001d05bba49c30f2/4089cd" type="video/mp4" size="720" />
+
+<source src="https://player.odycdn.com/api/v4/streams/free/pr3y/f28d462fbe5f7bb714682b827868d34a3aa39677/c799cc.mkv" type="video/mp4" size="1080" />
+
+
+<track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default />
+<track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt" />
+-->
+
+<!--
+<a href="hhttps://player.odycdn.com/api/v4/streams/free/pr3y/f28d462fbe5f7bb714682b827868d34a3aa39677/c799cc.mkv" download>Download kidan</a>
+-->
+<!--
+</video>
+-->
+
+
+
+<!--
+</div>
+
+ep03- https://odysee.com/$/embed/f4rz1s01e03-48p-30bm_HIGH:4?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+4-https://odysee.com/$/embed/f4rz1s01e04-48p-30bm:6?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+5-https://odysee.com/$/embed/f4rz1s01e05-48p-30bm_HIGH:9?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+6-https://odysee.com/$/embed/f4rz1s01e06-48p-30bm_HIGH:9?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+7-https://odysee.com/$/embed/f4rz1s01e07-48p-30bm:f?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+8-https://odysee.com/$/embed/f4rz1s01e08-48p-30bm:9?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+
+-->
+<!--
+Episode 01
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e01_HIGH:d?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+Episode 02
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e02-48p-26bm_HIGH:7?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+Episode 03
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e03-48p-30bm_HIGH:4?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+
+
+Episode 04
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e04-48p-30bm:6?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&autoplay=true&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+
+
+Episode 05
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e05-48p-30bm_HIGH:9?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&autoplay=true&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+
+
+Episode 06
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e06-48p-30bm_HIGH:9?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&autoplay=true&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+Episode 07
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e07-48p-30bm:f?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&autoplay=true&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+Episode 08
+<div  id="one"style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://odysee.com/$/embed/f4rz1s01e08-48p-30bm:9?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx&autoplay=true&nodownload"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div id="hide odysee logo when u click the video " style="width: 320px; height: 41px; position: absolute; opacity: 80; right: 0px; top: 0px; background-color:black;">&nbsp;</div>
+      
+	  <div id="transparent div to disable right click over video to save  " style="width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;">&nbsp;</div>
+
+</div>
+
+<!--episodes single single  finished
+
+<div id="demo">JavaScript can change HTML content.</div> -->
+
+
+<div id ="eg"> <div id="displayfirst" style="height:auto ; margin:0px; padding: 5px; width:auto; background-color: black;";> <img src="https://media.tenor.com/K9xULWL27h8AAAAd/no-one-cares-idc.gif"; > </img></div><!-- here javascript loads the desired html to play -->
+
+
+</div>
+
+
+<!--
+<button type="button" onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!"'>Click Me!</button>
+-->
+	<div class="buttonep" style="background-color:grey; float: left;  position:relative; left: -100px; pointer-events:none;" > Enjoy Movie
+	</div>
+		<div id="season1" style="float:left";> 
+		
+			<button class="buttonep" onclick="s01e01();myFunction()">Play>></button>
+			<!--
+			<button class="buttonep" onclick="s01e02();myFunction()">Part 02</button>
+			
+			<button class="buttonep" onclick="s01e03();myFunction()">Part 03</button>
+			<button class="buttonep" onclick="s01e04();myFunction();">Part 04</button>
+			<!--
+			<button class="buttonep" id="buttonn" onclick="pressm2();">mute</button>
+			<button class="buttonep" onclick="">f</button>
+			<p id="demo">oo</p>
+			-->
+			<!--
+			<button class="buttonep" onclick="s01e05();myFunction()">Ep.05</button>
+			<button class="buttonep" onclick="s01e06();myFunction()">Ep.06</button>
+			-->
+			
+			
+			
+		</div>
+		
+		
+<!--
+
+
+
+	<div class="buttonep" style="background-color:grey ; float: left;  position:relative; left: -100px;pointer-events:none;" > Season 02
+	</div>
+		<div id="season2" style="float:left";> 
+			<button class="buttonep" onclick="s01e01();myFunction()">Ep.01</button>
+			<button class="buttonep" onclick="s01e02();myFunction()">Ep.02</button>
+			<button class="buttonep" onclick="s01e03();myFunction()">Ep.03</button>
+			<button class="buttonep" onclick="s01e04();myFunction()">Ep.04</button>
+			<button class="buttonep" onclick="s01e05();myFunction()">Ep.05</button>
+			<button class="buttonep" onclick="s01e06();myFunction()">Ep.06</button>
+			
+		</div>
+-->	
+<!-- execute 2 functions on 1 button click // onclick="myFun1();myFun2()" -->
+
+
+<!--
+<div id="iphone" >
+new link youtbe tubemate = 
+old link = https://odysee.com/f4rz1s01e01-48p-30bm:2?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx
+<a href="https://odysee.com/f4rz1s01e01-48p-30bm:2?r=JAWT6ixJMNi1GJ3PuzufxzU2iMd4UNHx" target="_blank"> iphone </a>
+
+</div>
+<!-- div tag for different seasons and episodes -->
+<!--
+<div>
+  <input type="checkbox" class="visually-hidden" id="dropdown">
+  <label for="dropdown" class="dropdown-header"></label><br>
+
+  <label class="dropdown" for="option1">S01.Ep.01</label><input type="radio" id="option1" name="rad" class="visually-hidden" checked><br>
+  <label class="dropdown" for="option2">S01.Ep.02</label><input id="option2" type="radio" class="visually-hidden" name="rad"/><br>
+  <label class="dropdown" for="option3">S01.Ep.03</label><input id="option3" type="radio" class="visually-hidden" name="rad"/><br>
+  <label class="dropdown" for="option3">S01.Ep.04</label><input id="option3" type="radio" class="visually-hidden" name="rad"/><br>
+  <label class="dropdown" for="option3">S01.Ep.05</label><input id="option3" type="radio" class="visually-hidden" name="rad"/><br>
+  <label class="dropdown" for="option3">S01.Ep.06</label><input id="option3" type="radio" class="visually-hidden" name="rad"/><br>
+  <div class="answer"></div>
+</div>
+
+</div>
+
+-->
+
+
+<!--
+<iframe id="odysee-iframe" width="290" height="290" src="https://odysee.com/$/embed/@honeyktest4:2/v4dh-36p-283bm-2023-yttm:3?r=1258sFPgrok5XtsH7unmKSwPJ9NGQaDt&autoplay=true&nodownload=true" allowfullscreen controls
+  controlsList="nodownload" ></iframe>
+  
+ 
+  
+ 
+   
+
+  <iframe id="odysee-iframe" width="290" height="290" src="https://odysee.com/$/embed/@honeyktest4:2/v4dh-36p-283bm-2023-yttm:3?r=1258sFPgrok5XtsH7unmKSwPJ9NGQaDt&amp;autoplay=true&amp;nodownload=true&amp;download=false" allowfullscreen="true" controls controlslist="nodownload"></iframe>
+
+5th
+<video
+  allow="fullscreen"
+  frameBorder="0"
+  width="100%"
+  height="300"
+  controls
+  controlsList="nodownload"
+>
+  <source :src="https://odysee.com/$/embed/@honeyktest4:2/v4dh-36p-283bm-2023-yttm:3?r=1258sFPgrok5XtsH7unmKSwPJ9NGQaDt" />
+</video>
+
+
+<!--
+2nd 
+
+<blockquote class="embedly-card"><h4><a href="https://odysee.com/@honeyktest4:2/v4dh-36p-283bm-2023-yttm:3">Enjoy</a></h4><p>Enjoy</p></blockquote>
+<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+
+
+
+
+
+
+3rd 
+
+<iframe id="odysee-iframe" width="300" height="300" src="https://odysee.com/$/embed/@honeyktest4:2/v4dh-72p-770bm-fullhd-2023-yttm:6?r=1258sFPgrok5XtsH7unmKSwPJ9NGQaDt&autoplay=true" allowfullscreen></iframe>
+
+
+
+4th
+
+<div class="ipsEmbeddedVideo" contenteditable="false">
+	<div>
+		<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="113" src="https://odysee.com/@honeyktest4:2/v4dh-36p-283bm-2023-yttm:3" title="Odysee.com" width="200"></iframe>
+	</div>
+
+
+</div>
+
+
+</main>
+
+-->
+
+<script src="https://cdn.plyr.io/3.7.3/demo.js" crossorigin="anonymous"></script>
+</body>
+</html>

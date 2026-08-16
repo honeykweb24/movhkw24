@@ -1,0 +1,69 @@
+<!DOCTYPE<html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+<script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+<script>
+  const player = new Plyr('#player');
+</script>
+
+
+
+
+
+<style>
+
+
+</style>
+</head>
+
+
+<body bgcolor="#FFFFFF"  oncontextmenu="return false">
+
+
+
+
+ 
+<p> <b> W A N D A  V I S I O N SEASON 1 2022 </p> </b>
+  
+  <div  style="width: 320px; height: 240px; position: relative;">
+
+  <!-- paste here https://drive.google.com/file/d/15QzJOOwU8FQSFuuxJJIf4hpN1Xlut9la/view?usp=sharing
+1nOXQ8GgW60H4KxTh1UwAxFoIDSDn72NV
+  
+  https://drive.google.com/file/d/1TegjyUgM7SBCUinIPBVX8dVztzgHIlyy/view
+  
+  just copy the video id and paste below 
+  -->
+  
+      <iframe src="https://drive.google.com/file/d/1TegjyUgM7SBCUinIPBVX8dVztzgHIlyy/preview"   width="320" height="240" frameborder="0" scrolling="yes" seamless="" allowfullscreen="yes"></iframe>
+
+      <div style="width: 100px; height: 100px; position: absolute; opacity: 0; right: 0px; top: 0px;">&nbsp;</div>
+</div>
+
+
+<!--
+<p> <b> Matrix Ressurections English Cut </p> </b>
+  
+  <div  style="width: 320px; height: 240px; position: relative;">
+
+      <iframe src="https://drive.google.com/file/d/1ohScDTIkb8eY1OEuGg-0atK9gXTVOKgb/preview"   width="320" height="240" frameborder="0" scrolling="no" seamless="" allowfullscreen="yes"></iframe>
+
+      <div style="width: 100px; height: 100px; position: absolute; opacity: 0; right: 0px; top: 0px;">&nbsp;</div>
+</div>
+-->
+
+
+
+
+
+
+
+
+<script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+<script>
+  const player = new Plyr('#player');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title></title>
+<meta name="description" property="og:description" content="" />
+<meta name="author" content="Sam Potts" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="icon" href="https://cdn.plyr.io/static/icons/favicon.ico" />
+<link rel="icon" type="image/png" href="https://cdn.plyr.io/static/icons/32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="https://cdn.plyr.io/static/icons/16x16.png" sizes="16x16" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.plyr.io/static/icons/180x180.png" />
+
+<meta property="og:title" content="" />
+<meta property="og:site_name" content="Plyr" />
+<meta property="og:url" content="https://plyr.io" />
+<meta property="og:image" content="https://cdn.plyr.io/static/icons/1200x630.png" />
+
+
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/demo.css" />
+
+<link rel="preload" as="font" crossorigin type="font/woff2" href="https://cdn.plyr.io/static/fonts/gordita-medium.woff2" />
+<link rel="preload" as="font" crossorigin type="font/woff2" href="https://cdn.plyr.io/static/fonts/gordita-bold.woff2" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132699580-1"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-132699580-1');
+    </script>
+	
+	
+	
+	
+	
+
+	
+	
+	
+</head>
+<body>
+
+<div class="grid">
+
+<main>
+<div id="container">
+
+
+
+
+<iframe class="rumble" style="position: relative; z-index: 0;" width="auto" height="auto" src="https://rumble.com/embed/v2s1gzp/?pub=29wn4n" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+<div id="overlay" style="z-index: 1;  background-color: green; height: 144px; left: 608px; overflow: hidden; position: absolute; top: 192px; width:306px; ">sgfsdfsdfsdfhjghjgjhgjgh
+
+</div>
+
+
+
+
+
+<!--
+<video controls crossorigin playsinline data-poster="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjipiYsoqTr1TNW3TFKtKm6jBnj30gGerP3IaE-YG3uLzHH54f-OXX-qm2h8CB9B1KIkaCc5x8xN_3ogZ_zXsBapLSZjn1EWuyyyK6AKWndVAvPZkEdT04kN-UBwKIZbLza0s0c2HK-Bg-Ot8eYNSD7ZTdYxSI-nVzeLUj-dJlpzMYagFbUZyS1skli/w945-h600-p-k-no-nu/logo.jpg" id="player">
+
+<source src="https://sp.rmbl.ws//s8//2//I//V//Y//k//IVYkk.caa.mp4" type="video/mp4" size="360" />
+<source src="https://sp.rmbl.ws//s8//2//I//V//Y//k//IVYkk.caa.mp4" type="video/mp4" size="720" />
+<!--
+poster on blogspot = https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjipiYsoqTr1TNW3TFKtKm6jBnj30gGerP3IaE-YG3uLzHH54f-OXX-qm2h8CB9B1KIkaCc5x8xN_3ogZ_zXsBapLSZjn1EWuyyyK6AKWndVAvPZkEdT04kN-UBwKIZbLza0s0c2HK-Bg-Ot8eYNSD7ZTdYxSI-nVzeLUj-dJlpzMYagFbUZyS1skli/w945-h600-p-k-no-nu/logo.jpg
+<source src="https://sp.rmbl.ws//s8//2//0//G//8//3//0G83i.baa.mp4" type="video/mp4" size="480" />
+<source src="https://sp.rmbl.ws//s8//2//0//G//8//3//0G83i.caa.mp4" type="video/mp4" size="720" />
+<!--
+<track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default />
+<track kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt" />
+-->
+
+
+<!--
+</video>
+-->
+<!--
+<a href="https://sp.rmbl.ws//s8//2//u//0//C//Q//u0CQj.caa.mp4" download>Download </a>
+(click download button , then right click over movie or hold the touch and then select save video as)
+
+
+-->
+<!--
+	<div id="downloadfile" >
+		<div class="container">
+<h6>Download file from external url Example</h6>
+<div class="form-group">
+  <input type="text" class="form-control" id="imgUrl" Placeholder="https://sp.rmbl.ws//s8//2//u//0//C//Q//u0CQj.caa.mp4"/><br>
+  <button class="btn" type="button" id="button" onclick="savefile()">Download
+  </div>
+</div>
+
+		</div>
+
+
+</div>
+
+
+-->
+
+</div>
+</main>
+
+<script>
+    $('#imgUrl').focus(function(){
+      $(this).css("color" , "#333");
+   $(this).val("")
+
+ })
+ 
+ 
+//Handle Button click
+$('button').on('click', function(e){
+  //Store user entered value
+  $('#imgUrl').css('color', 'black')
+  var userUrl =  $('#imgUrl').val();
+  e.preventDefault();
+ if(userUrl == "" || !userUrl.match("^http")){
+   console.log(userUrl.toString())
+   $('#imgUrl').val('Must enter valid url begining with http or https');
+$('#imgUrl').css('color', 'red')
+ } else{
+   //If pass then save url 
+   saveFile(userUrl);
+   
+ }
+  
+})
+
+
+// Download a file form a url.
+function saveFile(url) {
+  // Get file name from url.
+  var filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'blob';
+  xhr.onload = function() {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+    a.download = filename; // Set the file name.
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    delete a;
+  };
+  xhr.open('GET', url);
+  xhr.send();
+}
+
+</script>
+		
+
+
+
+<script src="https://cdn.plyr.io/3.7.3/demo.js" crossorigin="anonymous"></script>
+</body>
+</html>

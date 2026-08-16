@@ -1,0 +1,1 @@
+copy /Y "source_path\source_filename.ext" "destination_path\destination_filename.ext"

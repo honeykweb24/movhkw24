@@ -1,0 +1,1521 @@
+<html lang="eng">
+
+<head>
+
+<!-- colorbox code -->
+<!-- copy the controls.png and loading.gif from colorbox-masters on the images folder , then the close button will work -->
+
+
+		<style>
+
+		<!-- here a.link{text-decoration:none;} stops from underlines the imdb and live image -->
+		
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link{text-decoration:none; };, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>
+		
+		
+		<!-- ref for ajax search bar -->
+		
+		
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+		<!-- live search ends -->
+		
+		
+		
+		
+		<link rel="stylesheet" href="colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+				$(".ajax").colorbox();
+				
+				$(".youtube").colorbox({iframe:true, innerWidth:320, innerHeight:290});<!-- used for youtube trailer 320 by 290 here in header poster page The size of the bpyoutubetrailer.htm embeded has to be width =300 , height =270-->
+				
+				$(".vimeo").colorbox({iframe:true, innerWidth:450, innerHeight:600});<!-- this is used for imdb poster page size -->
+				
+				$(".iframe").colorbox({iframe:true, width:"350px", height:"650px"}); <!-- this declares the size of the popup iframe opened , it covers 2 servers in this iframe -->
+				$(".inline").colorbox({inline:true, width:"50%"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				$('.non-retina').colorbox({rel:'group5', transition:'none'})
+				$('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		
+		
+		<!-- color box css and js ended -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .youtubetrailertext {
+  
+  font-size: 30px;
+  color: blue ; 
+  
+  }
+  
+  .left {
+  float: left;
+  width: auto;
+  height: auto;
+  border: 1px solid #ffffff00 ;  <!-- 3px solid #73AD21   //   transparent code : #ffffff00 , black is #000000-->
+  padding: 10px;
+}
+
+
+.container {
+  position: relative;
+  width: 100%;   <!-- this width decides the size of the poster small or larger . for gallery look like it should be 70% or so -->
+  text-align: center;
+  color: white;   <!-- all text color inside the poster is white -->
+    
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color : white ; 
+  size : h4 ;
+  font-size : 30px;
+  font-weight : bold ;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width:100% ;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+<!--  code to make these links work on toucha and hover pc  // hover first then active 
+ .info-slide:hover, .info-slide:active{
+   height:300px;
+ } -->
+ 
+ 
+.container:hover  .image,  .container:active .image {   
+  opacity: .6;
+}
+
+.container:hover  .middle,  .container:active .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: transparent;   <!-- this is the background color behinf text  #04AA6D green color -->
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+ }
+  
+  
+  <!-- different from colorbox it just centers the item -->
+  
+  .centerimg {
+  
+  display: block;
+  margin : auto;
+  width : 100%;
+  text-align: center;
+  
+  }
+  
+  <!-- for the title of season with episodes used style in place -->
+ 
+  
+
+  
+ <!-- just knowledge purpose  hyperlinks coding
+  a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+-->
+	
+	
+	
+	
+
+
+</style>
+
+ 
+   
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+
+
+
+
+<!-- live search -->
+
+
+
+
+<!-- onclick="alert('test');"> -->
+
+
+	<div class="left1" style="position : relative;  z-index : 998; ">
+		<div class="searchbar" style="padding:50px 50px; ">
+		<h1> Search Movie</h1>
+		<form role="form">
+			<div class="form-group" style="  height:100px;" >
+			   
+				<input type="input" class="form-control input-lg" id="txt-search" placeholder="Type your search character"style="width:200px ; height:50px;">
+			   
+			</div>
+		</form>
+	<!-- this filter records is to show the founded match of movies -->
+	      
+			<div id="filter-records" style="height : 70px;  z-index: 999; position : relative;"></div>
+		  
+		</div>
+	</div>
+ 
+<!-- live search ends
+
+<p> &nbsp </p>
+-->
+
+
+
+
+
+
+
+		<div class="left"><!-- prey eng season 1   Movie starts here-->
+
+			<div id="96"style="  margin : auto; width : 100%; text-align: center;"><h4>Prey   </h4>
+
+				<div class="container">
+					<div class="centered">Prey  </div>
+					<div style="width: 280px ;  height : 300px;">
+					<img src="./movies/pr3y/pr3yposter.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+					</div>
+		  
+					<div class="middle">
+						<div class="text">	
+						<!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->						
+								<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/pr3y/pr3y"><b>							
+							<!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+									<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+									</b>
+							-->		<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>							 
+									</a>							
+							<!-- imdb -->
+								<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/pr3y/pr3yimdb.png"  >
+									<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+								<!--	 this is live cam pic -->
+									</a></p></h2>		
+							<!-- xxxx imdb opens weblink as popup so idea dropped 
+												<a href="https://www.imdb.com/title/tt5433138/" 
+									  target="popup" 
+									  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+										<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+														</a>xxxx
+							-->					
+							<!-- youtube trailer -->		
+							<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/pr3y/pr3yyoutubetrailer"  >
+									<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>							
+								<!--	 this is live cam pic -->
+									</a></p>
+						</div>
+					</div>
+				</div>
+			</div>  	
+		</div>
+</div>	<!-- left --> <!-- finish prey 2022 movie eng-hindi dub ends here check this div ending -->
+
+
+
+
+
+
+
+
+
+<div class="left"><!-- wanda vision eng season 1   Movie starts here-->
+
+<div id="97"style="  margin : auto; width : 100%; text-align: center;"><h4>WVSeason 1 Eng-Sub   </h4>
+
+
+<div class="container">
+			<div class="centered">WV S01  </div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/w4nd4v1510n/w4nd4v1510nposter.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/w4nd4v1510n/w4nd4v1510n"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/w4nd4v1510n/w4nd4v1510nimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/w4nd4v1510n/w4nd4v1510nyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish wanda vision season 1 2021 movie english ends here  -->
+
+
+
+
+
+
+<div class="left"> <!-- ni mein sass kuttni  Movie starts here-->
+
+<div id="98"style="  margin : auto; width : 100%; text-align: center;"><h4> Ni Mein Sass Kuttni 2022 Punjabi   </h4>
+
+
+<div class="container">
+			<div class="centered" style="font-size: 12px;">Ni Mein Sass Kuttni Punjabi 2022 </div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/n1m41n/n1m41nposter.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/n1m41n/n1m41n"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/n1m41n/n1m41nimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/n1m41n/n1m41nyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish ni mein sass kutni 2022 movie hindi ends here  -->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="left"> <!-- Batman  Movie starts here-->
+
+<div id="99"style="  margin : auto; width : 100%; text-align: center;"><h4>Batman 2022 Hindi   </h4>
+
+
+<div class="container">
+			<div class="centered">Batman 2022 </div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/b47m4n/b47m4nposter.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/b47m4n/b47m4n"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/b47m4n/b47m4nimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/b47m4n/b47m4nyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish batman 2022 movie hindi ends here  -->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="left"> <!-- Dune Movie starts here-->
+
+<div id="100"style="  margin : auto; width : 100%; text-align: center;"><h4>Dune 2022 Hindi - Eng  </h4>
+
+
+<div class="container">
+			<div class="centered">Dune 2022 </div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/dun3/dun3poster.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/dun3/dun3"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/dun3/dun3imdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/dun3/dun3youtubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish Dune 2022 movie ends here  -->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="left"> <!-- Matrix Ressurections starts here-->
+
+<div id="101"style="  margin : auto; width : 100%; text-align: center;"><h4>Matrix Ressurections </h4>
+
+
+<div class="container">
+			<div class="centered">Matrix Ressurections </div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/m47r1x/m47r1xposter.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/m47r1x/m47r1x"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/m47r1x/m47r1ximdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/m47r1x/m47r1xyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish Matrix Ressurections movie ends here  -->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="left"> <!-- flames season 1  starts here-->
+
+<div id="102" style="  margin : auto; width : 100%; text-align: center;"><h4>Flames Season 1 </h4>
+
+
+<div class="container">
+			<div class="centered">Flames Season 1</div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/fl4m35/fl4m35poster.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/fl4m35/fl4m35"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/fl4m35/fl4m35imdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/fl4m35/fl4m35youtubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- flames season 1 movie ends here  -->	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="left"> <!-- movie KFG Chapter 1  Movie 10 starts here-->
+
+<div id="103" style="  margin : auto; width : 100%; text-align: center;"><h4>KGF Chapter 1 </h4>
+
+
+<div class="container">
+			<div class="centered">KGF 1</div>
+				
+				
+			<div style="width: 280px ;  height : 300px;">
+			<img src="./movies/fgk/fgkposter.png" alt="Avatar" class="image" style="max-width: 100%; max-height:100%;">
+			</div>
+  
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/fgk/fgk"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/fgk/fgkimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/fgk/fgkyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+												
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish kgf movie ends here  -->	
+	
+	
+	
+	
+	
+
+
+
+<div class="left"> <!-- movie 2  loki season hindi dub  -->
+<div id="105" style="  margin : auto; width : 100%; text-align: center;"><h4>Loki Season 1  </h4>
+				</div>
+
+
+
+<div class="container">
+			<div class="centered">LOKI Season 1 </div>
+				
+
+  <img src="./movies/l0k1/l0k1posterok250.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 1 Starts -->
+					
+					<!--Live  Movie watch 	-->
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/l0k1/l0k101s01e"  >	<b>Loki S01 Ep01 	</b>
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s02e"  >	Loki S01 Ep02 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s03e"  >	Loki S01 Ep03 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s04e"  >	Loki S01 Ep04 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>  
+
+							
+							<!--
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s05ered"  >	Loki S01 Ep05 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+						<!--	</a></p></h2> -->
+							
+							<!--
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >	Loki S01 Ep06 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+						<!--	</a></p></h2> 
+						-->						
+					<!-- imdb -->												
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+												
+					<!-- youtube trailer -->												
+												<br><br>
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/nW948Va-l10" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											
+					
+	
+	
+
+	
+	
+	
+	
+	</div>
+  </div>
+</div>
+</div>  <!-- left --> <!-- finish movie 2 -->	
+
+
+
+
+	
+
+<div class="left"> <!--  movie 4 bhoot police  Movie 8 starts here-->
+
+<div id="105"style="  margin : auto; width : 100%; text-align: center;"><h4>Bhoot Police   </h4>
+
+
+<div class="container">
+			<div class="centered">Bhoot Police </div>
+				
+				
+
+  <img src="./movies/bp/bpposter.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/bp/bp"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/bp/bpimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/bp/bpyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+											<!--	
+											
+											
+											<!-- used for youtube trailer 320 by 290 here in header poster page The size of the bpyoutubetrailer.htm embeded has to be width =300 , height =270
+											
+											
+											
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+												<div id="youtubetrailer" class="youtubetrailertext"   ><b>Youtube Trailer</b>
+												</div>
+											<!--		
+style=" font-size :70px; font-color : blue; margin-right:5px "									
+											<p style=" font-size : 15px; font-color : blue; "><b>Youtube Trailer</b></p>
+											<p style="background-color:tomato; font-color:blue;">This is a paragraph.</p>
+									-->		
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>	
+</div><!-- left --> <!-- finish bhoot police movie 8 ends here  -->
+	
+		
+
+<div class="left"> <!--  movie 5 puada  starts here-->
+
+<div id="106" style="  margin : auto; width : 100%; text-align: center;"><h4>PUAADA   </h4>
+
+
+<div class="container">
+			<div class="centered">PUAADA </div>
+				
+				
+				
+
+  <img src="./movies/pu44d4/pu44d4poster.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/pu44d4/pu44d4"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/pu44d4/pu44d4imdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/pu44d4/pu44d4youtubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+											<!--	
+											
+											
+											<!-- used for youtube trailer 320 by 290 here in header poster page The size of the bpyoutubetrailer.htm embeded has to be width =300 , height =270
+											
+											
+											
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+												<div id="youtubetrailer" class="youtubetrailertext"   ><b>Youtube Trailer</b>
+												</div>
+											<!--		
+style=" font-size :70px; font-color : blue; margin-right:5px "									
+											<p style=" font-size : 15px; font-color : blue; "><b>Youtube Trailer</b></p>
+											<p style="background-color:tomato; font-color:blue;">This is a paragraph.</p>
+									-->		
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>
+</div>	<!-- left --> <!-- finish puaada movie 9 ends here  -->
+
+
+	
+
+	
+
+<div class="left"> 	<!-- movie 7 happy hardy and heer hindi himesh reshamiya movie Movie 10 starts here-->
+
+<div id="107" style="  margin : auto; width : 100%; text-align: center;"><h4>Happy Hardy and Heer 2021   </h4>
+
+
+<div class="container">
+			<div class="centered">Happy Hardy and Heer </div>
+				
+				
+				
+			<div style="width: 300px ;  height : 300px;">
+				<img src="./movies/hhh/hhhposter.png" alt="Avatar" class="image" style="max-height: 100% ; max-width: 100%;">
+			</div>
+
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/hhh/hhh"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/hhh/hhhimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/hhh/hhhyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+											<!--	
+											
+											
+											<!-- used for youtube trailer 320 by 290 here in header poster page The size of the bpyoutubetrailer.htm embeded has to be width =300 , height =270
+											
+											
+											
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+												<div id="youtubetrailer" class="youtubetrailertext"   ><b>Youtube Trailer</b>
+												</div>
+											<!--		
+style=" font-size :70px; font-color : blue; margin-right:5px "									
+											<p style=" font-size : 15px; font-color : blue; "><b>Youtube Trailer</b></p>
+											<p style="background-color:tomato; font-color:blue;">This is a paragraph.</p>
+									-->		
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>	
+</div><!-- left --> <!-- finish happy hardy and heer movie 11 ends here  -->	
+	
+	
+	
+
+
+
+
+<div class="left"> <!-- movie 9 --Sanak Vidyut Jamwal hindi dub movie Movie 10 starts here-->
+
+<div id="108" style="  margin : auto; width : 100%; text-align: center;"><h4>Sanak Hindi 2021   </h4>
+
+
+<div class="container">
+			<div class="centered">Sanak Hindi 2021  </div>
+				
+				
+				
+
+  <img src="./movies/54n4k/54n4kposter.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	style="margin-right:5px"-->
+							
+							<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/54n4k/54n4k"  >	<b>
+							
+					<!--		
+							<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s03e"> Episode.03</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s04e"> Episode.04</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s05e"> Episode.05</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s06e"> Episode.06</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s07e"> Episode.07</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s08e"> Episode.08</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s09e"> Episode.09</a>
+							<a class='iframe' href="./movies/bbb3/bbb303s10e"> Episode.10</a>
+							
+							</b>
+					-->		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							 
+							</a>   
+							
+									
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='vimeo' style=" font-size : 15px; font-color : blue; " href="./movies/54n4k/54n4kimdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->		
+					<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href="./movies/54n4k/54n4kyoutubetrailer"  >
+							<img  src="movies/pics/youtubetrailer7.png" alt="Image"    class="centerimg" ;>
+							
+						<!--	 this is live cam pic -->
+							</a></p>
+
+
+					
+											<!--	
+											
+											
+											<!-- used for youtube trailer 320 by 290 here in header poster page The size of the bpyoutubetrailer.htm embeded has to be width =300 , height =270
+											
+											
+											
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+												<div id="youtubetrailer" class="youtubetrailertext"   ><b>Youtube Trailer</b>
+												</div>
+											<!--		
+style=" font-size :70px; font-color : blue; margin-right:5px "									
+											<p style=" font-size : 15px; font-color : blue; "><b>Youtube Trailer</b></p>
+											<p style="background-color:tomato; font-color:blue;">This is a paragraph.</p>
+									-->		
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>	
+</div><!-- left --> <!-- finish Sanak Movie 12 ends here  -->
+	
+
+
+</body>
+
+
+
+	
+	<!-- script to search -->
+	
+	
+	<script type="text/javascript">
+  $(document).ready(function(){
+    var data = [
+{"id":"96","employee_name":"prey predator 5 hindi dub ","employee_salary":"prey predator 5 hindi dub 2022 // Imdb Rating 7.4 // 2022 / Action Adventure ","employee_age":"2022 ","profile_image":"/movies/pr3y/pr3ylogo.png"},
+{"id":"97","employee_name":"ni main sass kuttni punjabi ","employee_salary":" ni main sass kuttni punjabi 2022 // Imdb Rating 5.4 // 2022 / Comedy Drama ","employee_age":"2022 ","profile_image":"/movies/n1m41n/n1m41nlogo.png"},
+{"id":"98","employee_name":"ni main sass kuttni punjabi ","employee_salary":" ni main sass kuttni punjabi 2022 // Imdb Rating 5.4 // 2022 / Comedy Drama ","employee_age":"2022 ","profile_image":"/movies/n1m41n/n1m41nlogo.png"},
+{"id":"99","employee_name":"batman","employee_salary":" batman 2022 // Imdb Rating 7.9 // 2022 / Action Crime Drama ","employee_age":"2022 ","profile_image":"/movies/b47m4n/b47m4nlogo.png"},
+{"id":"100","employee_name":"dune","employee_salary":" dune 2022 // Imdb Rating 8.1 // 2022 / Timothée Chalamet ","employee_age":"2022 ","profile_image":"/movies/dun3/dun3logo.png"},
+{"id":"101","employee_name":"matrix ressurection","employee_salary":" matrix ressurection part 4 // Imdb Rating 7.5 // 2022 / kenu reives ","employee_age":"61 ","profile_image":"/movies/m47r1x/m47r1xlogo.png"},
+{"id":"102","employee_name":"flames","employee_salary":"flames season 1 , 2 // imdb 9.3 // 2021 / ritvik ","employee_age":"63","profile_image":"/movies/fl4m35/fl4m35logo.png"},
+{"id":"103","employee_name":"KGF 1","employee_salary":"KGF 1 // imdb 8.3 // 2018 / South Indian Hindi Dub  ","employee_age":"66","profile_image":"/movies/fgk/fgklogo.png"},
+{"id":"104","employee_name":"Loki","employee_salary":"Loki Season 1 , 2 // imdb 8.3 / 2021 / marvel studios hindi dub ","employee_age":"22","profile_image":"default_profile.png"},
+{"id":"105","employee_name":"Bhoot Police","employee_salary":"Bhoot Police // imdb 5.3 / 2021 / bollywood / saif ali khan , arjun kapoor","employee_age":"33","profile_image":"default_profile.png"},
+{"id":"106","employee_name":"Puaada","employee_salary":"372000","employee_age":"61","profile_image":"default_profile.png"},
+{"id":"107","employee_name":"Happy Hardy Heer ","employee_salary":"137500","employee_age":"59","profile_image":"default_profile.png"},
+{"id":"108","employee_name":"Sanak","employee_salary":"327900","employee_age":"55","profile_image":"default_profile.png"},
+{"id":"109","employee_name":"Colleen Hurst","employee_salary":"205500","employee_age":"39","profile_image":"default_profile.png"},
+{"id":"110","employee_name":"Sonya Frost","employee_salary":"103600","employee_age":"23","profile_image":"default_profile.png"}];
+
+$('#txt-search').keyup(function(){
+            var searchField = $(this).val();
+			if(searchField === '')  {
+				$('#filter-records').html('');
+				return;
+			}
+			
+            var regex = new RegExp(searchField, "i");
+            var output = '<div class="row">';
+            var count = 53;
+			let pageurlname = "play53#";
+		<!--	var scrollto = + val.id + ; -->
+			  $.each(data, function(key, val){
+				if ((val.employee_salary.search(regex) != -1) || (val.employee_name.search(regex) != -1)) {
+				 
+				 
+				<!--  output += '<div id="clicksearch"  onclick="location.href="''" >'; -- >
+				 
+				 
+			output += '<div id="clicksearch"  onclick="location.href=\''+ pageurlname + + val.id + '\'  "; style="cursor: pointer; background-color: #FFFF00; ">'; 
+				 
+			<!--	 final code -- ok working to scroll to specific movies after clicking and searching in json -->
+			
+			<!-- output += '<div id="clicksearch"  onclick="location.href=\''+ pageurlname + + val.id + '\'  "; style="cursor: pointer;">';    -->
+			<!-- added by me to search scroll  // <div onclick="location.href='#';" style="cursor: pointer;">-->
+			<!-- 2 or more var val variable s  output += '<h5>'+ pageurlname + + val.id + '</h5>';  -->
+			 <!--output += '<div class="col-md-3"><img class="img-responsive" src="'+val.profile_image+'" alt="'+ val.employee_name +'" /></div>'; -->
+				 
+				  output += '<div class="col-md-6 well">';
+				  output += '<div class="col-md-3"><img class="img-responsive" src="'+val.profile_image+'" alt="'+ val.employee_age +'" /></div>';
+				  output += '<div class="col-md-7">';
+			<!--  output += '<h5>'+ pageurlname + + val.id + '</h5>';   --> 
+				  output += '<p><b>' + val.employee_name + '</b></p>'
+				  output += '<p>' + val.employee_salary + '</p>'
+				  output += '</div>';
+				  output += '</div>';
+				  
+				  <!-- scroll div ended -->
+				  output += '</div>';
+				  
+				  
+				  if(count%2 == 0){
+					output += '</div><div class="row">'
+				  }
+				  count++;
+				}
+			  });
+			  output += '</div>';
+			  $('#filter-records').html(output);
+			  
+        });
+  });
+</script>
+
+
+	
+	
+	<!-- live search ends -->
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,24 @@
+<rule name="rule 1h" stopProcessing="true">
+	<match url="^"  ignoreCase="true" />
+	<action type="Redirect" url="//%1"  />
+</rule>
+<rule name="rule 2h" stopProcessing="true">
+	<match url="^"  ignoreCase="true" />
+	<action type="Rewrite" url="/%{REQUEST_URI}.html"  />
+</rule>
+<rule name="rule 3h" stopProcessing="true">
+	<match url="^"  ignoreCase="true" />
+	<action type="Redirect" url="//%1"  />
+</rule>
+<rule name="rule 4h" stopProcessing="true">
+	<match url="^"  ignoreCase="true" />
+	<action type="Rewrite" url="/%{REQUEST_URI}.htm"  />
+</rule>
+<rule name="rule 5h" stopProcessing="true">
+	<match url="^"  ignoreCase="true" />
+	<action type="Redirect" url="//%1"  />
+</rule>
+<rule name="rule 6h" stopProcessing="true">
+	<match url="^"  ignoreCase="true" />
+	<action type="Rewrite" url="/%{REQUEST_URI}.php"  />
+</rule>

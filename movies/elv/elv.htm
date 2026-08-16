@@ -1,0 +1,363 @@
+
+<! DOCTYPE html> 
+<html>
+
+<head>
+  <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+<meta charset="utf-8" />
+<title></title>
+<meta name="description" property="og:description" content="" />
+<meta name="author" content="Sam Potts" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="icon" href="https://cdn.plyr.io/static/icons/favicon.ico" />
+<link rel="icon" type="image/png" href="https://cdn.plyr.io/static/icons/32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="https://cdn.plyr.io/static/icons/16x16.png" sizes="16x16" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.plyr.io/static/icons/180x180.png" />
+
+<meta property="og:title" content="" />
+<meta property="og:site_name" content="Plyr" />
+<meta property="og:url" content="https://plyr.io" />
+<meta property="og:image" content="https://cdn.plyr.io/static/icons/1200x630.png" />
+
+
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/demo.css" />
+
+<link rel="preload" as="font" crossorigin type="font/woff2" href="https://cdn.plyr.io/static/fonts/gordita-medium.woff2" />
+<link rel="preload" as="font" crossorigin type="font/woff2" href="https://cdn.plyr.io/static/fonts/gordita-bold.woff2" />
+
+
+	<!-- Ds R c
+
+function dcm()
+  {
+    document.getElementById("page").oncontextmenu = function(){alert("Restricted By QS Consultants !"); return false;};   
+  };   
+	-->
+<style>	
+
+/* Change the background color of the button when hovered 
+#0000FF blue , #4CAF50;  Green , #3e8e41;  light gren , light blue #ADD8E6 , green #00FF00 , */
+
+.buttonep {
+			background-color: #0684C4;
+			border: none;
+			color: white;
+			padding: 2px 4px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 10px;
+			margin: 2px 1px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+			
+		
+		.buttonep:hover {
+			background-color: #8EBF6E; /* light green*/
+		}
+		.buttonep:clicked {
+			background-color: green; /* Green */
+		}
+		
+		.buttonep:focus {
+			background-color: #006805; /* Green or blue */
+		}
+		
+		
+		
+	
+	.visually-hidden {
+    position: absolute;
+    left: -100vw;
+}
+
+.dropdown-header::after {
+    content: "Season 01";
+}
+
+#option1:checked ~ .dropdown-header::after {
+    content: "Episode 1";
+}
+
+#option2:checked ~ .dropdown-header::after {
+    content: "Episode 2";
+}
+
+#option3:checked ~ .dropdown-header::after {
+    content: "Episode 3";
+}
+
+.answer::after {
+    content: "";
+}
+
+#option1:checked ~ .answer::after {
+    content: "Episode  1";
+}
+
+#option2:checked ~ .answer::after {
+    content: "Episode 2";
+}
+
+#option3:checked ~ .answer::after {
+    content: "Episode 3";
+}
+
+.dropdown:hover {
+  background-color: blue;
+}
+
+#dropdown:checked ~ .dropdown {
+  display: inline;
+}
+
+.dropdown {
+  display: none;
+}
+
+</style>	
+	
+<script>
+
+	/*
+	dual tamil , but gdrv only plays tamil -9x: https://drive.google.com/file/d/1dvRqmNfBaYbhcE8eYHOM1zYsRxBWp1J1/view
+	hnd only using mkv tool- https://drive.google.com/file/d/1HwHH4QD2uthGhrEHpruDugKD3uhQNfku/view
+	*/
+let episodetoplay = "pending";
+let episodename = "giveitname";
+let episodedownload = "anything";
+
+function s01e01()
+/*  
+
+https://drive.usercontent.google.com/download?id=15TILW8AH8jt1wDnadq_o2vSrCFXUMH5I&export=download&confirm=t&uuid=3fe9a1e6-e88b-4e5f-9eeb-7273c8b7fe69
+
+https://drive.google.com/file/d/1IjNkQK4xyi3YVmKBG5gKHU32BSCItvEs/view?usp=drive_link
+
+<iframe src="https://drive.google.com/file/d/1_2xNvWpLl9mToEGp7M_FMEwSZVFiHOss/preview" width="640" height="480" allow="autoplay"></iframe>
+
+1hmKHylDyTjqkqpmfCpBioXhYs4L5uOyD
+
+*/
+{ episodetoplay = "https://drive.google.com/file/d/1hmKHylDyTjqkqpmfCpBioXhYs4L5uOyD/preview";
+  episodename = "Watching e l e v a t i o n fhd 7p h28 2025 ";
+  episodedownload = "downloads01e01";
+  }
+  
+function s01e02()
+{ episodetoplay = "https://drive.google.com/file/d/1M7X8Y_UHX0YC31uNA2kXVZBZfx1_iZm5/preview";
+episodename = "Watching   ";
+episodedownload = "downloads01e02";
+}
+ /*
+
+// https://drive.google.com/file/d/1UCS8nfcdszyY1YUAnHNb0ed55-dkEYbO/view?usp=drive_link
+function s01e03()
+{ episodetoplay = "https://drive.google.com/file/d/1UCS8nfcdszyY1YUAnHNb0ed55-dkEYbO/preview";
+episodename = "Watching - S01 E03 HINDI ";
+episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//I//E//6//u//IE6ur.caa.mp4na";
+}
+// https://drive.google.com/file/d/1GKH5abbc2iA4a2sZJNpoIHZ0gF4A2F4h/view?usp=drive_link
+function s01e04()
+{ episodetoplay = "https://drive.google.com/file/d/1GKH5abbc2iA4a2sZJNpoIHZ0gF4A2F4h/preview";
+episodename = "Watching S01 E04 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//a//g//q//A//agqAr.caa.mp4na";
+   
+  }
+  // https://drive.google.com/file/d/1wGA_cM7GAsPSePVX-ta2zbEAedQ61Xsp/view?usp=drive_link
+  function s01e05()
+{ episodetoplay = "https://drive.google.com/file/d/1wGA_cM7GAsPSePVX-ta2zbEAedQ61Xsp/preview";
+episodename = "Watching - S01 E05 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//x//_//m//A//x_mAr.caa.mp4na";
+     }
+// https://drive.google.com/file/d/1GCk7kMhl3i7gH6bqstNCglyPr0bYTELR/view?usp=drive_link
+  function s01e06()
+{ episodetoplay = "https://drive.google.com/file/d/1GCk7kMhl3i7gH6bqstNCglyPr0bYTELR/preview";
+episodename = "Watching House 0F Drag0ns- S01 E06 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//x//_//m//A//x_mAr.caa.mp4na";
+   
+  }
+  // https://drive.google.com/file/d/1raS7rvu9XRnuptms4NI27pTj3ygr5QDY/view?usp=drive_link
+  function s01e07()
+{ episodetoplay = "https://drive.google.com/file/d/1raS7rvu9XRnuptms4NI27pTj3ygr5QDY/preview";
+episodename = "Watching - S01 E07 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//x//_//m//A//x_mAr.caa.mp4na";
+   
+  }
+  //https://drive.google.com/file/d/1mqJQ7R9GXbXmTUFXZubjg8h3cZQmPjyJ/view?usp=drive_link
+  function s01e08()
+{ episodetoplay = "https://drive.google.com/file/d/1mqJQ7R9GXbXmTUFXZubjg8h3cZQmPjyJ/preview";
+episodename = "Watching- S01 E08 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//x//_//m//A//x_mAr.caa.mp4na";
+   
+  }
+  
+  
+  function s01e09()
+{ episodetoplay = "https://drive.google.com/file/d/1s08FH3NlP9Le4eN3IqrqSS4Ur0txEGMk/preview";
+episodename = "Watching House 0F Drag0ns- S01 E09 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//x//_//m//A//x_mAr.caa.mp4";
+   
+  }
+  
+  function s01e10()
+{ episodetoplay = "https://drive.google.com/file/d/11b5Nwr3eNXL-r2_SMX0TZG2todXYKeq4/preview";
+episodename = "Watching House 0F Drag0ns- S01 E10 HINDI ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//fw//s8//2//x//_//m//A//x_mAr.caa.mp4";
+   
+  }
+*/
+function myFunction() {
+
+//.const str = 'Hello' + ' ' + 'World';
+//.let text1 = "t1";
+//.let text2 = "t2";
+//.let text3 = text1 + " " + text2;
+//.let s01ep01 = "";
+
+
+let moviespath = episodetoplay ;
+
+let result = "<div  id='box' style='width: 320px; height: 240px; position: relative; background-color: none; float:left; left: 0px; margin:0px; padding:0px; z-index: 11;'> "
+
+				+"<div id='ifra'  style='z-index: 10; float:left; width: 100%; '>"
+				
+				+ "<div id='hide pop when u click the video ' style='z-index: 2147483647; width: 60px; height: 50px; position: absolute; opacity: 00; right: 08px; top: 8px; background-color:none;'>&nbsp;</div>"
+				
+				+ "<iframe src=" + moviespath +  " ' width='100%' height='100%'  id='ifr' frameborder='0' scrolling='no' seamless='yes' allowfullscreen allowautoplay allowtransparency  '> </iframe>"
+				+"</div>"
+				
+				
+				/*
+				+ "<div id='hide odysee logo when u click the video ' style='z-index: 2147483647; width: 40px; height: 30px; position: absolute; opacity: 80; right: 08px; bottom: 0px; background-color:black;'>&nbsp;</div>"
+				
+				
+				+ "<div id='transparent div to disable right click over video to save ' style='width: 320px; height: 180px; position: absolute; opacity: 02; right: 0px; top: 0px; background-color:none;'>&nbsp;</div>"
+		        */
+				
+			  +"</div>"
+			  
+		    +"<div id='episodename' >" + episodename + "</div>"
+			+"<div id='episodedownload' > <a href=" + episodedownload + " target='_self'>Download</a></div>";
+			
+			
+
+//.alert ("start");
+
+document.getElementById("eg").innerHTML = result;
+//alert("done")
+// oncontextmenu="return false";
+}
+
+</script>
+
+
+
+<!-- Dsb R c  -->	
+	<script type="text/jscript">
+		  function dcm1()
+		  {
+			document.getElementById("pageb").oncontextmenu = function(){alert("Restricted Access !"); return false;};   
+		  };    
+    
+	</script>
+</head>
+
+ <body id="pageb" onload="dcm1(); s01e01(); myFunction();" oncontextmenu="return false">
+ 
+ <!--- copy code from Dsb R c  ends till here for single movie page  -->
+
+<!-- 
+ <body class="page"  onload=" dcm(); s01e01(); myFunction();"> 
+ <body class="page"  onload=" s01e01();myFunction();"> -->
+
+
+		<div id="mainhtm" style=" width: 100%; height: 100%;  float:left; left: 0px; margin:0px; padding:0px;  ">
+				
+			<div id ="eg">
+					<div id="displayfirst" style="height:auto ; margin:0px; padding: 0px; width:auto; background-color: black;";> <img src="https://c.tenor.com/4B2j48N2jMUAAAAd/tenor.gif"; > </img>
+					</div>
+			</div>
+				<!--
+				old gif no one cares = https://media.tenor.com/K9xULWL27h8AAAAd/no-one-cares-idc.gif
+				newgif = https://c.tenor.com/4B2j48N2jMUAAAAd/tenor.gif
+				 here javascript loads the desired html to play 
+				 -->			
+				<!--
+				<div id ="eg" style="height:auto ; margin:0px; padding: 0px; width:auto; background-color: none;";>
+
+			
+					<div  id='box' style='width: 320px; height: 240px; position: relative; background-color: none; float:left; left: 0px; margin:0px; padding:0px; z-index: 11;'>
+
+						<div id='ifra'  style='z-index: 10; float:left; width: 100%; '>
+					
+							<div id='hide pop when u click the video ' style='z-index: 2147483647; width: 60px; height: 50px; position: absolute; opacity: 00; right: 08px; top: 8px; background-color:none;'>&nbsp;
+							</div>
+						
+							<iframe src="https://drive.google.com/file/d/1jAOQ_LI-GFJir1RL9pHg9JA_3WQ63Q1T/preview" width='100%' height='100%'  id='ifr' frameborder='0' scrolling='no' seamless='yes' allowfullscreen allowautoplay allowtransparency  > 
+							</iframe>
+						
+						</div>	
+					</div>
+			
+				</div>
+				-->	
+								<!--
+									<div class="buttonep" style="background-color:grey; float: left;  position:relative; left: 0px; pointer-events:none;" > Enjoy Movie !
+									</div>
+								-->	
+					<!--	<div id="downloadmovie">
+						<a href="download">Download gdr</a>
+						</div>
+					-->
+				
+				
+				<div id="season1" style="float:left";> 
+						<!--
+						<button class="buttonep" onclick="s01e01();myFunction()">Click here to PLAY<img src="https://cdn-icons-png.flaticon.com/512/260/260446.png" style="width:30px; height:30px;"> </img></button><br>
+						-->
+					<button class="buttonep" onclick="s01e01();myFunction()">Play Movie<img src="https://cdn-icons-png.flaticon.com/512/260/260446.png" style="width:20px; height:20px;"> </img></button>	
+					<!--					
+					<button class="buttonep" onclick="s01e02();myFunction()">Movie part 2 2024 |></button>
+					
+					<button class="buttonep" onclick="s01e02();myFunction()">S01 E02 |></button>
+					<button class="buttonep" onclick="s01e03();myFunction()">S01 E03 |></button>
+					<button class="buttonep" onclick="s01e04();myFunction()">S01 E04 |></button>
+					<button class="buttonep" onclick="s01e05();myFunction()">S01 E05 |></button>
+					<button class="buttonep" onclick="s01e06();myFunction()">S01 E06 |></button>
+					<button class="buttonep" onclick="s01e07();myFunction()">S01 E07 |></button>
+					<button class="buttonep" onclick="s01e08();myFunction()">S01 E08 |></button>					
+					<button class="buttonep" onclick="s01e09();myFunction()">S01 E09 |></button>
+					<button class="buttonep" onclick="s01e10();myFunction()">S01 E10 |></button>
+					-->
+							
+							<div id='info' style="font-size:8px"><br><br><br>
+							<!--
+							<a href="https://drive.google.com/file/d/1sHE0ALgfQWBw_sX0pPdXTMH0F1S0_Go4/preview" target="_blank"> IPHONE</a><br><br>
+							-->
+							<img src="https://www.shutterstock.com/shutterstock/photos/1692548866/display_1500/stock-vector-telephone-communication-icon-on-a-white-background-vector-illustration-1692548866.jpg" alt="Girl in a jacket" width="30px" height="30px">
+							<img src="https://media.istockphoto.com/id/1141778521/vector/mobile-phone-vibrating-or-ringing-flat-vector-icon-for-apps-and-websites.jpg?s=1024x1024&w=is&k=20&c=A0rn7QOcHTJwRlcUVMxvSuuHEWW46-SFojRKEZnKLP8=" alt="Girl in a jacket" width="30px" height="30px">
+							
+							For Mobile / Less Data / HD: Play movie in fullscreen , then Click on the setting Icon , Then Click Quality : Select 360p 
+							
+							
+										<br> <br>
+										
+										<img src="https://media.istockphoto.com/id/1138089587/vector/wi-fi-internet-icon-vector-wi-fi-wlan-access-wireless-wifi-hotspot-signal-sign.jpg?s=1024x1024&w=is&k=20&c=nRTiReqiAe7bUi3YbqPeriG8y23k0X3_m6OV4ShZynI=" alt="Girl in a jacket" width="30px" height="30px">
+										<img src="https://media.istockphoto.com/id/1086009348/vector/laptop-device-icon-office-appliances-stock-vector.jpg?s=1024x1024&w=is&k=20&c=omoD1zo_FGHwfkc4M7_gJC3dSBbai-PNcSP5Kov9QWw=" alt="Girl in a jacket" width="30px" height="30px">
+										
+										For Laptop / TV / Wifi / More Data / Full HD : Play movie in fullscreen , then Click on the setting Icon ,
+										Then Click Quality : Select 720p 
+										</div>	
+							
+				</div>
+		
+		</div>
+		
+</body>
+</html>
+

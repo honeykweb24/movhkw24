@@ -1,0 +1,298 @@
+<!DOCTYPE html> 
+
+<head>
+ 
+ <style>	
+
+/* Change the background color of the button when hovered 
+#0000FF blue , #4CAF50;  Green , #3e8e41;  light gren , light blue #ADD8E6 , green #00FF00 , */
+
+.buttonep {
+			background-color: #0684C4;
+			border: none;
+			color: white;
+			padding: 2px 4px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 10px;
+			margin: 2px 1px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+			
+		
+		.buttonep:hover {
+			background-color: #8EBF6E; /* light green*/
+		}
+		.buttonep:clicked {
+			background-color: green; /* Green */
+		}
+		
+		.buttonep:focus {
+			background-color: #006805; /* Green or blue */
+		}
+			
+	.visually-hidden {
+    position: absolute;
+    left: -100vw;
+}
+
+.buttonepmobwifi {
+			
+			background-color: Purple;
+			border: none;
+			color: white;
+			padding: 2px 4px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 10px;
+			margin: 2px 1px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+			
+		
+		.buttonepmobwifi:hover {
+			background-color: #8EBF6E; /* light green*/
+		}
+		.buttonepmobwifi:clicked {
+			background-color: green; /* Green */
+		}
+		
+		.buttonepmobwifi:focus {
+			background-color: #006805; /* Green or blue */
+		}
+			
+	.visually-hidden {
+    position: absolute;
+    left: -100vw;
+}
+</style>
+ 
+ 
+ <script>
+	//
+let episodetoplay = "pending";
+let episodename = "giveitname";
+let episodedownload = "anything";
+//let boxes = document.getElementsByName("box");
+
+
+function s01e01mobile()
+{ episodetoplay = "https://ia902801.us.archive.org/31/items/k-1ll-2024-mp-4/k1ll%202024%20mp4%20.mp4";
+  episodename = "Watching K I L L - HINDI movie <br>( Mobile , Less Data , Hd )";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//s8//2//I//O//2//0//IO20s.caa.mp4";
+}
+function s01e01wifi()
+{ episodetoplay = "https://ia902801.us.archive.org/31/items/k-1ll-2024-mp-4/k1ll%202024%20mp4%20.mp4";
+  episodename = "Watching K I L L - HINDI movie <br>(Laptop , Wifi , More Data , Full Hd ) ";
+  episodedownload = "https://hugh.cdn.rumble.cloud//video//s8//2//I//O//2//0//IO20s.caa.mp4";
+}
+
+function s01e02()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck-2--80bm-72p_HD:4?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true&nodownload";
+episodename = "Watching Part 02 ";
+episodedownload = "https://odysee.com/$/download/j0hnw1ck-2--80bm-72p_HD/4e97874a1a044cda193a38be8c736de14a65f312";
+}
+function s01e03()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck-3-12bg-72p:d?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true&nodownload";
+episodename = "Watching part 03 ";
+episodedownload = "https://odysee.com/$/download/j0hnw1ck-3-12bg-72p/dd2d49efd16e8ab0fbec40651325c37fd0de7ad9";
+}
+
+function s01e04()
+{ episodetoplay = "https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck4-8bm-72p:c?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true&&aria-valuenow=6";
+//&sound=true&volume=50&autostart=true&unmute=true&mute=false
+  episodename = "Watching part 04 ";
+  episodedownload = "https://odysee.com/$/download/j0hnw1ck4-8bm-72p/c245b7049b2259b7791393cf9c9d335e98144929";
+   
+  }
+function s01e05()
+{ episodetoplay = "https://odysee.com/$/embed/@hktest16:2/544z4-kh4b4r-s01e05_HD:3?r=WbkmcpUYEkbnmbjuNyeSXfXJyxTCk44G&autoplay=true&nodownload";
+episodename = "Watching Season 01 Episode 05 ";
+episodedownload = "anything";
+}
+
+function s01e06()
+{ episodetoplay = "https://odysee.com/$/embed/@hktest16:2/544z4-kh4b4r-s01e06_HD:3?r=WbkmcpUYEkbnmbjuNyeSXfXJyxTCk44G&autoplay=true&nodownload";
+episodename = "Watching Season 01 Episode 06 ";
+episodedownload = "anything";
+}
+
+function myFunction() {
+//.const str = 'Hello' + ' ' + 'World';
+//.let text1 = "t1";
+//.let text2 = "t2";
+//.let text3 = text1 + " " + text2;
+//.let s01ep01 = "";
+
+let moviespath = episodetoplay ;
+
+let result = "<div  id='box' style='margin:auto; '> "
+
+				+"<video width='95%' height='200px' controls controlsList='download' preload>"
+				+"<source src=" + moviespath + " 'type='video/mp4'>' "
+				+"type='video/mp4'>"
+				+"</video>"
+			+"</div>"
+			  
+		    +"<div id='episodename' >" + episodename + "</div>"
+//			+"<div id='episodedownload' > <a href='" + episodedownload + "'>Download</a></div>";
+	
+//.alert ("start");
+document.getElementById("show").innerHTML = result;
+//alert("done");
+}
+
+</script>
+	
+  
+</head>
+
+<body onload="s01e01mobile();myFunction()">
+<div id="main" style="margin:auto;">
+
+
+	<div id="show">
+		<div id ="box" style="margin:auto;">
+			<video width="95%" height="200px" controls controlsList="download">
+			  <source src="https://ia902801.us.archive.org/31/items/k-1ll-2024-mp-4/k1ll%202024%20mp4%20.mp4" type="video/mp4">
+			</video>
+		</div>
+	</div>	
+		
+		<div id="mobilewifi" style="margin;auto;" >
+		
+				<button class="buttonepmobwifi" 
+				onclick="s01e01mobile();myFunction()">Mobile / Less Data / Hd<br>
+				<img src="https://www.shutterstock.com/shutterstock/photos/1692548866/display_1500/stock-vector-telephone-communication-icon-on-a-white-background-vector-illustration-1692548866.jpg" alt="Girl in a jacket" width="30px" height="30px">
+				<img src="https://media.istockphoto.com/id/1141778521/vector/mobile-phone-vibrating-or-ringing-flat-vector-icon-for-apps-and-websites.jpg?s=1024x1024&w=is&k=20&c=A0rn7QOcHTJwRlcUVMxvSuuHEWW46-SFojRKEZnKLP8=" alt="Girl in a jacket" width="30px" height="30px">
+				
+											
+				</button>
+				
+				<button class="buttonepmobwifi"
+				onclick="s01e01wifi();myFunction()">Wifi / More Data / Full Hd <br>
+				<img src="https://media.istockphoto.com/id/1138089587/vector/wi-fi-internet-icon-vector-wi-fi-wlan-access-wireless-wifi-hotspot-signal-sign.jpg?s=1024x1024&w=is&k=20&c=nRTiReqiAe7bUi3YbqPeriG8y23k0X3_m6OV4ShZynI=" alt="Girl in a jacket" width="30px" height="30px">
+				<img src="https://media.istockphoto.com/id/1086009348/vector/laptop-device-icon-office-appliances-stock-vector.jpg?s=1024x1024&w=is&k=20&c=omoD1zo_FGHwfkc4M7_gJC3dSBbai-PNcSP5Kov9QWw=" alt="Girl in a jacket" width="30px" height="30px">
+				
+				
+				
+				
+				
+				</button>
+				
+		</div>
+		<br><br>
+			<div id='info' style="font-size:10px">To Download : Click on Play then Click on Download then Long Press on Mobile and then click 'Download Video' // <br>on laptop click download, then on PC right click on video then click save Video as  
+			</div>
+		<!--
+		<div class="buttonep" style="background-color:grey; float: left;  position:relative; left: 0px;
+			pointer-events:none;" > Enjoy Movie ( K I L L - bollyhwood 2024 action )
+		</div>
+		<div id="season1" style="float:left";> 
+		
+			<button class="buttonep" onclick="s01e012();myFunction()"> Play</button>			
+			<button class="buttonep" onclick="s01e02();myFunction()">S03 E02 |></button>
+			<button class="buttonep" onclick="s01e03();myFunction()">S03 E03 |></button>
+			<button class="buttonep" onclick="s01e04();myFunction()">S03 E04 |></button>
+			<button class="buttonep" onclick="s01e05();myFunction()">S03 E05 |></button>
+			<button class="buttonep" onclick="s01e06();myFunction()">S03 E06 |></button>
+			<button class="buttonep" onclick="s01e07();myFunction()">S03 E07 |></button>
+			<button class="buttonep" onclick="s01e08();myFunction()">S03 E08 |></button>
+			<button class="buttonep" onclick="s01e09();myFunction()">S03 E09 |></button>
+			<button class="buttonep" onclick="s01e10();myFunction()">S03 E10 |></button>
+			
+		</div>
+		-->
+	
+	
+	
+</div>	
+</body> 
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- trash -->
+
+<!-- simple mp4 player
+<video class="video-js vjs-theme-fantasy"
+    id="my-video"
+    class="video-js"
+    controls controlsList="download"
+	volumeControl="true"   	
+    preload="auto"
+    width="280px"
+    height="300px"
+    poster="https://m.media-amazon.com/images/M/MV5BNDRkNGNjNzMtYzE3MS00OWQyLTkzZGUtNWIyMmYwMjY3YzYxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpgs"
+    data-setup="{}"
+  >
+    <source src="https://ia601903.us.archive.org/3/items/fur1054/m4d%20m4x%20fur1054%20baa%20hd.mp4" type="video/mp4" />
+    </video>
+
+  <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+  
+  
+  
+ head
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+  <link href="https://unpkg.com/video.js@7/dist/video-js.min.css" rel="stylesheet"/>
+  
+  <!-- City  sea-- it show how much is downloaded before streaming fantasy-- ok look-->
+<!--
+<link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet" />
+<link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css" rel="stylesheet" /> -->
+<!--
+<link href="https://unpkg.com/@videojs/themes@1/dist/fantasy/index.css" rel="stylesheet" />
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> 
+  
+  
+  /*
+<iframe id="odysee-iframe" width="560" height="315" src="https://odysee.com/$/embed/@honeykweb11:2/j0hnw1ck-3-12bg-72p:d?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj" allowfullscreen></iframe>
+*/-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

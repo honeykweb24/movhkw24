@@ -1,0 +1,575 @@
+
+<html>
+
+<head>
+
+<style>
+
+		<!-- here a.link{text-decoration:none;} stops from underlines the imdb and live image -->
+		
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link{text-decoration:none; };, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>
+		<link rel="stylesheet" href="/colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="/jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+				$(".ajax").colorbox();
+				$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+				$(".vimeo").colorbox({iframe:true, innerWidth:500, innerHeight:409});
+				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+				$(".inline").colorbox({inline:true, width:"50%"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				$('.non-retina').colorbox({rel:'group5', transition:'none'})
+				$('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		
+		
+		<!-- color box css and js ended -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  
+  .left {
+  float: left;
+  width: auto;
+  height: auto;
+  border: 1px solid #ffffff00 ;  <!-- 3px solid #73AD21   //   transparent code : #ffffff00 , black is #000000-->
+  padding: 10px;
+}
+
+
+.container {
+  position: relative;
+  width: 100%;   <!-- this width decides the size of the poster small or larger . for gallery look like it should be 70% or so -->
+  text-align: center;
+  color: white;
+    
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color : white ; 
+  size : h4 ;
+  font-size : 30px;
+  font-weight : bold ;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width:100% ;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+<!--  code to make these links work on toucha and hover pc  // hover first then active 
+ .info-slide:hover, .info-slide:active{
+   height:300px;
+ } -->
+ 
+ 
+.container:hover  .image,  .container:active .image {   
+  opacity: .6;
+}
+
+.container:hover  .middle,  .container:active .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: transparent;   <!-- this is the background color behinf text  #04AA6D green color -->
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+ }
+  
+  
+  <!-- different from colorbox it just centers the item -->
+  
+  .centerimg {
+  
+  display: block;
+  margin : auto;
+  width : 100%;
+  text-align: center;
+  
+  }
+  
+  <!-- for the title of season with episodes used style in place -->
+ 
+  
+
+  
+ <!-- just knowledge purpose  hyperlinks coding
+  a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+-->
+
+.nocopy {
+ -webkit-touch-callout: none;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+
+</style>
+
+<!--
+{  
+             div.style.display = "none";  
+         }  
+         else
+         {  
+             div.style.display = "block";  
+         }  
+    }  
+-->
+
+
+<script>
+
+function callepisode1() {
+			
+            document.getElementById("displayepisode1").style.display = "block";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+						}
+						
+
+function callepisode2() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "block";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}	
+
+function callepisode3() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "block";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+
+function callepisode4() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "block";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+
+function callepisode5() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "block";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+
+function callepisode6() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "block";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+
+function callepisode7() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "block";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+
+function callepisode8() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "block";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+
+function callepisode9() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "block";
+			document.getElementById("displayepisode10").style.display = "none";
+													
+						}
+						
+function callepisode10() {
+			
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "none";
+			document.getElementById("displayepisode3").style.display = "none";
+			document.getElementById("displayepisode4").style.display = "none";
+			document.getElementById("displayepisode5").style.display = "none";
+			document.getElementById("displayepisode6").style.display = "none";
+			document.getElementById("displayepisode7").style.display = "none";
+			document.getElementById("displayepisode8").style.display = "none";
+			document.getElementById("displayepisode9").style.display = "none";
+			document.getElementById("displayepisode10").style.display = "block";
+													
+						}
+
+        } 
+    </script> 
+	
+	
+	
+		<!-- radio button coding reference 
+						
+						function checkButton() {  
+            if(document.getElementById('episode1').checked) { 
+            var episode = 1;
+            alert(episode);
+            document.getElementById("displayepisode1").style.display = "block";
+			document.getElementById("displayepisode2").style.display = "none";
+                   
+            } 
+
+            else if(document.getElementById('episode2').checked) { 
+            var episode = 2;
+            alert(episode);
+            document.getElementById("displayepisode1").style.display = "none";
+			document.getElementById("displayepisode2").style.display = "block";
+                   
+            
+            } 
+
+						-->
+	
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+<!--<body class="nocopy">-->
+<body class="nocopy" oncontextmenu="return false;" onload="callepisode1()" >
+
+
+
+
+
+<div id="leftepisodes" style="float:left">
+<br><b> BBB3 Season All Episodes </b><br>
+<input type="radio" name="season" id="episode1" value="episode1" onclick="callepisode1()" >Episode1<br> 
+
+<input type="radio" name="season" id="episode2" value="episode2" onclick="callepisode2()" >Episode2<br> 
+
+<input type="radio" name="season" id="episode3" value="episode3" onclick="callepisode2()">Episode3<br>
+
+<input type="radio" name="season"id="episode4" value="episode4"  onclick="callepisode2()">Episode4<br>
+
+<input type="radio" name="season" id="episode5" value="episode5"  onclick="callepisode2()">Episode5<br> 
+
+<input type="radio" name="season" id="episode6" value="episode6"  onclick="callepisode2()">Episode6<br> 
+
+<input type="radio" name="season"id="episode7" value="episode7"  onclick="callepisode2()">Episode7<br>
+
+<input type="radio" name="season"id="episode8" value="episode8"  onclick="callepisode2()">Episode8<br>
+
+<input type="radio" name="season"id="episode9" value="episode9"  onclick="callepisode2()">Episode9<br>
+
+<input type="radio" name="season"id="episode10" value="episode10" onclick="callepisode2()">Episode10<br><br>     
+
+</div>
+<!--
+<button type="button" onclick=" checkButton()"> Submit </button> 
+Broken But Beautiful Season 3 Episode 01  720p High Quality/ High Internet Speed / High Data (mbi)
+-->
+
+<div id="displayepisode1" style="float:left" >
+
+<p><b></b>Ep01</p>
+
+  <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="300px"
+    height="150px"
+	controlsList="nodownload
+    poster="/movies/bbb3/bbb3imdb.png"
+    data-setup="{}"
+  >
+    <source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/bb372p250bm03s01e.mp4" type="video/mp4" controlsList="nodownload"/>
+    <!--
+	<source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/l0k101S01E720p580bmhnd-536p.webm" type="video/webm" />	
+	<track kind="captions" src="./movies/qp1/qp1sub.vtt" srclang="en" label="English" default>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+	-->
+  </video>
+
+
+</div> <!-- disp1 ends here// style="display:none ;  -->
+
+<div id="displayepisode2">
+
+<p><b>Broken But Beautiful Season 3 Episode 02  720p High Quality/ High Internet Speed / High Data (mbi)</b> </p>
+
+  <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="300px"
+    height="150px"
+	controlsList="nodownload
+    poster="/movies/bbb3/bbb3imdb.png"
+    data-setup="{}"
+  >
+    <source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/bb372p250bm03s01e.mp4" type="video/mp4" controlsList="nodownload"/>
+    <!--
+	<source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/l0k101S01E720p580bmhnd-536p.webm" type="video/webm" />	
+	<track kind="captions" src="./movies/qp1/qp1sub.vtt" srclang="en" label="English" default>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+	-->
+  </video>
+
+
+</div> <!-- disp2 ends here  -->
+    
+<h3 id="disp1" style= "color:green"> </h3>
+<h4 id="error" style= "color:red"> </h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="/movies/bbb3/bbb303s01e"  >	<b>BBB Season 03 Episode 01</b>
+							<img  src="/movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+<!--							</a></p></h2>
+-->
+<!-- 
+<p><b>L0k1 S01 E01 Server 1 (fr jp) </b></p>
+
+<iframe width="100%" height="100%" sandbox="allow-same-origin allow-scripts allow-popups" src="https://video.friendsyu.me/videos/embed/3fee0fd2-9778-43ff-9edb-29be2029a23d?title=0&warningTitle=0&peertubeLink=0" frameborder="0" allowfullscreen></iframe>
+  
+<p><b>Broken But Beautiful Season 3 Episode 01  720p High Quality/ High Internet Speed / High Data (mbi)</b> </p>
+
+  <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="300px"
+    height="150px"
+	controlsList="nodownload
+    poster="/movies/bbb3/bbb3imdb.png"
+    data-setup="{}"
+  >
+    <source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/bb372p250bm03s01e.mp4" type="video/mp4" controlsList="nodownload"/>
+    <!--
+	<source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/l0k101S01E720p580bmhnd-536p.webm" type="video/webm" />
+	
+	<track kind="captions" src="./movies/qp1/qp1sub.vtt" srclang="en" label="English" default>
+	
+	
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+  </video>
+ -->
+<!--
+<p><b>L0k1 S01 E01 Server 3  360p Medium Quality/ Medium Internet Speed / Medium Data (mbi)</b> </p> 
+<video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="300px"
+    height="150px"
+    poster="/movies/qp1/qp1imdb.png"
+    data-setup="{}"
+  >
+    <source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/l0k101S01E720p580bmhnd-360p.mp4" type="video/mp4" controlsList="nodownload"/>
+    <source src="https://cloud-object-storage-honeyktest3-cos-standard-6h4-bucket2.s3.jp-tok.cloud-object-storage.appdomain.cloud/l0k101S01E720p580bmhnd-360p.webm" type="video/webm" />
+	
+	<track kind="captions" src="./movies/qp1/qp1sub.vtt" srclang="en" label="English" default>
+
+	
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+  </video>
+-->
+
+
+</body>
+</head>
+</html>

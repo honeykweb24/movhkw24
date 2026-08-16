@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- colorbox code -->
+<!-- copy the controls.png and loading.gif from colorbox-masters on the images folder , then the close button will work -->
+
+
+		<style>
+
+		<!-- here a.link{text-decoration:none;} stops from underlines the imdb and live image -->
+		
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link{text-decoration:none; };, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>
+		<link rel="stylesheet" href="colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+				$(".ajax").colorbox();
+				$(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+				$(".vimeo").colorbox({iframe:true, innerWidth:500, innerHeight:409});
+				$(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+				$(".inline").colorbox({inline:true, width:"50%"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				$('.non-retina').colorbox({rel:'group5', transition:'none'})
+				$('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		
+		
+		<!-- color box css and js ended -->
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+  
+  .left {
+  float: left;
+  width: auto;
+  height: auto;
+  border: 1px solid #ffffff00 ;  <!-- 3px solid #73AD21   //   transparent code : #ffffff00 , black is #000000-->
+  padding: 10px;
+}
+
+
+.container {
+  position: relative;
+  width: 100%;   <!-- this width decides the size of the poster small or larger . for gallery look like it should be 70% or so -->
+  text-align: center;
+  color: white;
+    
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color : white ; 
+  size : h4 ;
+  font-size : 30px;
+  font-weight : bold ;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width:100% ;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+<!--  code to make these links work on toucha and hover pc  // hover first then active 
+ .info-slide:hover, .info-slide:active{
+   height:300px;
+ } -->
+ 
+ 
+.container:hover  .image,  .container:active .image {   
+  opacity: .6;
+}
+
+.container:hover  .middle,  .container:active .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: transparent;   <!-- this is the background color behinf text  #04AA6D green color -->
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+ }
+  
+  
+  <!-- different from colorbox it just centers the item -->
+  
+  .centerimg {
+  
+  display: block;
+  margin : auto;
+  width : 100%;
+  text-align: center;
+  
+  }
+  
+  <!-- for the title of season with episodes used style in place -->
+ 
+  
+
+  
+ <!-- just knowledge purpose  hyperlinks coding
+  a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+-->
+
+
+
+</style>
+</head>
+<body>
+
+
+
+
+<p> &nbsp </p>
+<p>  &nbsp </p>
+
+
+<div class="left">
+				<div style="  margin : auto; width : 100%; text-align: center;"><h4>Quiet Place Part 1 </h4><p> &nbsp </p>
+				</div>
+<div class="container">
+				<div class="centered">Quiet Place Part 1 </div>
+				
+
+  <img src="./movies/qp1/qp1poster250ok3.png" alt="Avatar" class="image" >
+  
+  <!-- imp : this should be around 300px vertical try for 300 by 300  and this alone decides the movie gallery float left -->
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 1 Starts -->
+					
+					<!--Live  Movie watch 	-->
+							
+							<h2><p><a class='iframe' href="./movies/qp1/watchnow"  >		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							<!-- this is live cam pic -->
+							</a></p></h2>   
+							<br>
+												
+					<!-- imdb -->												
+										<a href="https://www.imdb.com/title/tt6644200/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt6644200/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+												
+					<!-- youtube trailer -->												
+												<br><br>
+												<iframe width="214" height="120" src="https://www.youtube.com/embed/WR7cc5t7tv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											
+				<!-- finish movie 1 -->		
+	
+	
+	
+	
+	
+	</div>
+  </div>
+</div>
+</div>  <!-- left movie 1 ends here -->
+
+
+<div class="left">
+<div style="  margin : auto; width : 100%; text-align: center;"><h4>Loki Season 1  </h4>
+				</div>
+
+
+
+<div class="container">
+			<div class="centered">LOKI Season 1 </div>
+				<h4>Loki</h4>
+				
+
+  <img src="./movies/l0k1/l0k1posterok250.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 1 Starts -->
+					
+					<!--Live  Movie watch 	-->
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/l0k1/l0k101s01e"  >	<b>Loki Season01 Episode01 	</b>
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s02e"  >	Loki Season 01 Episode 02 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s03e"  >	Loki Season 01 Episode 03 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s04e"  >	Loki Season 01 Episode 04 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>  
+
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s05ered"  >	Loki Season 01 Episode 05 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >	Loki Season 01 Episode 06 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+												
+					<!-- imdb -->												
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+												
+					<!-- youtube trailer -->												
+												<br><br>
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/nW948Va-l10" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											
+					
+	
+	
+
+	
+	
+	
+	
+	</div>
+  </div>
+</div>
+</div>  <!-- left --> <!-- finish movie 2 -->	
+
+
+<!-- 3poster  bbb3 season 10 episodes 
+Movie 3 starts here-->
+<div class="left"> 
+
+<div style="  margin : auto; width : 100%; text-align: center;"><h4>Broken But Beautiful Season 3  </h4>
+
+
+<div class="container">
+			<div class="centered">BBB S03 </div>
+				<h4>BBB3</h4>
+				
+
+  <img src="./movies/bbb3/bbb3poster300ok.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	-->
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/bbb3/bbb303s01e"  >	<b>BBB Season 03 Episode 01</b>
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s02e"  >	BBB Season 03 Episode 02 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s03e"  >BBB Season 03 Episode 03	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s04e"  >BBB Season 03 Episode 04 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>  
+
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s05e"  >BBB Season 03 Episode 05 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>  
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s06e"  >BBB Season 03 Episode 06 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s07e"  >BBB Season 03 Episode 07	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+											
+						
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./moviesbbb3/bbb303s08e"  >	BBB Season 03 Episode 08 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+											
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s09e"  >BBB Season 03 Episode 09	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/bbb3/bbb303s10e"  >	BBB Season 03 Episode 10 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 			
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/bbb3/bbb3imdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->												
+												<br><br>
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											
+					
+		</div>
+  </div>
+</div>
+</div>  	
+</div>	<!-- left --> <!-- finish movie 3 ends here  -->
+	
+
+
+
+
+
+
+
+
+<!-- 3poster  bbb3 season 10 episodes 
+
+Movie starts here 4-->
+<div class="left">
+
+<div style="  margin : auto; width : 100%; text-align: center;"><h4>Broken But Beautiful Season 3  </h4> </div>
+
+
+<div class="container">
+			<div class="centered">BBB S03 </div>
+				<h4>BBB3</h4>
+				
+
+  <img src="./movies/bbb3/bbb3poster300ok.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	-->
+					
+					<!--Live  Movie watch 	-->
+							
+							<h2><p><a class='iframe' href="./movies/bbb3/bbb303stest3"  >		
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  class="centerimg" ;>
+							<!-- this is live cam pic -->
+							</a></p></h2>   
+							<br>
+													
+					<!-- imdb -->	
+
+						<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/bbb3/bbb3imdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->												
+												<br><br>
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											
+					
+		</div>
+  </div>
+</div>
+</div>  <!-- left --> <!-- Movie 4 ends here  -->	
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 3poster  bbb3 season 10 episodes 
+
+Movie starts here 5-->
+<div class="left">
+
+<div style="  margin : auto; width : 100%; text-align: center;"><h4>Broken But Beautiful Season 3  </h4> </div>
+
+
+<div class="container">
+			<div class="centered">BBB S03 </div>
+			<!--	<h4>BBB3</h4>     -->
+				
+
+  <img src="./movies/bbb3/bbb3poster300ok.png" alt="Avatar" class="image" style="100%">
+  <div class="middle">
+    <div class="text">
+	
+				<!-- Movie 3  Starts -->
+					
+					<!--Live  Movie watch 	-->
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/l0k1/l0k101s01e"  >	<b>BBB Season 03 Episode 01</b>
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s02e"  >	BBB Season 03 Episode 02 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s03e"  >BBB Season 03 Episode 03	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>   
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s04e"  >BBB Season 03 Episode 04 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>  
+
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s04e"  >BBB Season 03 Episode 05 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>  
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >BBB Season 03 Episode 06 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+							
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >BBB Season 03 Episode 07	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+											
+						
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >	BBB Season 03 Episode 08 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+											
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >BBB Season 03 Episode 09	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 
+
+							<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue;" href="./movies/l0k1/l0k101s06e"  >	BBB Season 03 Episode 10 	
+							<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="35px" height="17.5px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2> 			
+											
+							
+															
+					<!-- imdb -->	
+
+						<h2><p><a class='iframe' style=" font-size : 15px; font-color : blue; " href="./movies/bbb3/bbb3imdb.png"  >
+							<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+						<!--	 this is live cam pic -->
+							</a></p></h2>
+							
+							
+					<!-- xxxx imdb opens weblink as popup so idea dropped 
+										<a href="https://www.imdb.com/title/tt5433138/" 
+							  target="popup" 
+							  onclick="window.open('https://www.imdb.com/title/tt5433138/','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">
+								<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg" ;>
+												</a>
+						xxxx
+					-->
+					
+					<!-- youtube trailer -->												
+												<br><br>
+												<iframe  width="213" height="120" src="https://www.youtube.com/embed/P93oLX4Wtg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											
+					
+		</div>
+  </div>
+</div>
+</div>  <!-- left --> <!-- Movie 5 ends here  -->	
+
+
+
+
+
+
+
+
+
+
+	
+		
+	
+	
+	
+	
+	
+	
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Movies</title>
+    <!--<style>
+        body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+        a:link, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+        h2{font-size:13px; margin:15px 0 0 0;}
+    </style>-->
+    <style>
+        <!-- here a.link {
+            text-decoration: none;
+        }
+
+        stops from underlines the imdb and live image -->
+        body {
+            font: 12px/1.2 Verdana, sans-serif;
+            padding: 0 10px;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #416CE5;
+            border-bottom: 1px solid #416CE5;
+        }
+
+        h2 {
+            font-size: 13px;
+            margin: 15px 0 0 0;
+        }
+    </style>
+    <!-- ref for ajax search bar -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- live search ends -->
+
+    <link rel="stylesheet" href="colorbox.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="jquery.colorbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Examples of how to assign the Colorbox event to elements
+            $(".group1").colorbox({ rel: 'group1' });
+            $(".group2").colorbox({ rel: 'group2', transition: "fade" });
+            $(".group3").colorbox({ rel: 'group3', transition: "none", width: "75%", height: "75%" });
+            $(".group4").colorbox({ rel: 'group4', slideshow: true });
+            $(".ajax").colorbox();
+
+            // <!--iframe for live movies, vimeo for imdb, youtube for trailers-- >
+            $(".youtube").colorbox({ iframe: true, innerWidth: 320, innerHeight: 290 });
+            $(".vimeo").colorbox({ iframe: true, innerWidth: 330, innerHeight: 350 });
+            $(".iframe").colorbox({ iframe: true, width: "330px", height: "550px" });
+
+            $(".inline").colorbox({ inline: true, width: "50%" });
+            $(".callbacks").colorbox({
+                onOpen: function () { alert('onOpen: colorbox is about to open'); },
+                onLoad: function () { alert('onLoad: colorbox has started to load the targeted content'); },
+                onComplete: function () { alert('onComplete: colorbox has displayed the loaded content'); },
+                onCleanup: function () { alert('onCleanup: colorbox has begun the close process'); },
+                onClosed: function () { alert('onClosed: colorbox has completely closed'); }
+            });
+
+            $('.non-retina').colorbox({ rel: 'group5', transition: 'none' })
+            $('.retina').colorbox({ rel: 'group5', transition: 'none', retinaImage: true, retinaUrl: true });
+
+            //Example of preserving a JavaScript event for inline calls.
+            $("#click").click(function () {
+                $('#click').css({ "background-color": "#f00", "color": "#fff", "cursor": "inherit" }).text("Open this window again and this message will still be here.");
+                return false;
+            });
+        });
+    </script>
+    <!-- color box css and js ended -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .youtubetrailertext {
+            font-size: 30px;
+            color: blue;
+        }
+
+        .left {
+            float: left;
+            width: auto;
+            height: auto;
+            border: 1px solid #ffffff00;
+			
+        }
+        /* 3px solid #73AD21 // transparent code : #ffffff00, black is #000000-- > padding: 10px;*/
+
+        .container {
+            position: relative;
+            width: 100%;
+            /*  this width decides the size of the poster small or larger . for gallery look like it should be 70% */
+            text-align: center;
+            color: white;
+			
+        }
+        <!--
+
+        all text color inside the poster is white -->
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            /*  size: h4;*/
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .image {
+            opacity: 1;
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+			border-radius: 25px;
+        }
+
+        .middle {
+            transition: .5s ease;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        /*code to make these links work on toucha and hover pc // hover first then active */
+        .info-slide:hover, .info-slide:active {
+            height: 300px;
+        }
+
+        .container:hover .image, .container:active .image {
+            opacity: .6;
+        }
+        /*this just lightens up the image to greyish */
+        .container:hover .middle, .container:active .middle {
+            opacity: 1;
+        }
+        /*this brings the live into visibility */
+        .text {
+            background-color: transparent; /*this is the background color behinf text #04AA6D green color*/
+            color: white;
+            font-size: 16px;
+            padding: 16px 32px;
+        }
+        /* different from colorbox it just centers the item */
+        .centerimg {
+            display: block;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body class="page" id="page" onload="dcm();" oncontextmenu="return false">
+    <div id="ultimate">
+
+        <!-- live search  starts -->
+        <div class="left1" style="position : relative;  z-index : 998; ">
+            <div class="searchbar" style="padding:50px 50px; ">
+                <h1> Search Movie</h1>	<!--download page only -->
+                <form role="form">
+                    <div class="form-group" style="  height:100px;">
+                        <input type="text" class="form-control input-lg" id="txt-search" placeholder="Type your search character" style="width:200px ; height:50px;">
+                    </div>
+                </form><!-- this filter records is to show the founded match of movies -->
+                <div id="filter-records" style="height : 70px;  z-index: 999; position : relative;">
+                </div>
+            </div>
+        </div>
+        <!-- live search ends-->
+        <!--a href="./downloadmovies"> DOWN </a> shuru -->
+		
+
+
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="142" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>whiteout 2025 sniper snow amazon rental hnd</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNmNiMDNlNjEtNDkyMC00NzI2LTk3OWEtYjQwZTNlMDM3ZmUyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/wh1t30ut/wh1t30ut">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://www.rottentomatoes.com/m/whiteout_2023" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.2</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/wh1t30ut/wh1t30utyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+
+
+
+
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="141" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>valiant one 2025 war amazon rental hnd</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZTQzMGU4NjAtNjVmMy00MDIwLWI2YTYtYjY3MTM2YzExMzJkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/v4l14nt0n3/v4l14nt0n3">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Valiant_One" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.5</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/v4l14nt0n3/v4l14nt0n3youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="140" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>crazxy bollywood 2025 amazon rental </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNmUxYWI0OGItZjY5Ny00MjgzLWIwYTItMWU4M2YzY2EzMDE2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/cr4zxy/cr4zxy">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Crazxy" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        b>7.2</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/cr4zxy/cr4zxyyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+
+
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="139" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>wolf man 2025 hindi amazon rental</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYmFkYTNhMWUtMjEyNy00MWE0LWJlYTQtMWFmNDUwNmFjMzAxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/w0lfm4n/w0lfm4n">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Wolf_Man_(2025_film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.6</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/w0lfm4n/w0lfm4nyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+
+
+
+
+
+
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="137" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Rose rosy tey gulab punjabi 2025 </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYmRkMzQzOTUtYjBlMC00YTBiLThjMzEtMzAxYzZjOWUwZmY2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/rrtg/rrtg">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://simple.wikipedia.org/wiki/Rose_Rosy_Te_Gulab" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.9</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/rrtg/rrtgyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+
+
+
+		
+		
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="136" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Ni mein sass kutni 2 punjabi 2025 </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTcwZTQ4MDUtNDg0Mi00MTJlLThmMjAtYjQ5MzBhOTRiN2MxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/nm5k2/nm5k2">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://www.primevideo.com/detail/0PEIMDB5X0GB84JOT4X70TG2CI/ref=atv_dp_share_cu_r" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.1</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/nm5k2/nm5k2youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+
+
+	
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="135" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>the gorge eng 2025 apple tv+ </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BOTQ5Y2QyYTktYmFmZi00NWJlLWE0MzgtYTA4M2I0ZjQwZjcxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/g0rg3/g0rg3">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/The_Gorge_(film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.7</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/g0rg3/g0rg3youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+	
+
+
+	
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="134" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Raduaa returns punjabi 2024 </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZWY1ZTMyZTUtZDA0Yi00NmQ3LThmNTAtY2VlNTZiZDVlYzYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/rr2/rr2">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Raduaa" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.5</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/rr2/rr2youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+	
+	
+
+
+
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="133" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>mere husband ki biwi 2025 arjun kapoor </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNDgxNDlkYjgtMWZiZS00ZTk0LWIxNDMtYzZkYjQ5ZWI4OWYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/mhkb/mhkb">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Mere_Husband_Ki_Biwi" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.0</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/mhkb/mhkbyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+	
+	
+	
+
+<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="132" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Sikandar 2025 salman </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZjc3NzQyMTItMjBkOS00NTE4LTk4NDMtNTRiYzdjN2U2N2QwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/s1k4nd3r/s1k4nd3r">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Sikandar_(2025_film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.3</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/s1k4nd3r/s1k4nd3ryoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+	
+
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="131" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Deva 2025 shahid </b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZTllOTk2MDgtZmZmYy00MDBhLThiMzctNzhmNTk5ODdkZTcwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/d3v4/d3v4">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Deva_(2025_film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.6</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/d3v4/d3v4youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+
+		
+		<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="129" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>kraven the hunter 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZDU0YTI5ODAtN2NmMS00YTg3LTgyNDItN2RmOWEzOTkzZjcyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/kr4v3n/kr4v3n">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Kraven_the_Hunter_(film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.2</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/kr4v3n/kr4v3nyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="128" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>gladiator 2 hindi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMWYzZTM5ZGQtOGE5My00NmM2LWFlMDEtMGNjYjdmOWM1MzA1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/gl4d14t0r2/gl4d14t0r2">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Gladiator_II" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.7</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/gl4d14t0r2/gl4d14t0r2youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left" style="display:block; ">
+            <div id="127" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>blackia 2 punjabi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNDc0MjJjMDAtNjE1My00NmMzLTg3YjYtYmQyNDVjMDMzNWJjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/bl4ck142/bl4ck142">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Blackia" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.9</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/bl4ck142/bl4ck142youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="126" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>mufasa lion king hindi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYjBkOWUwODYtYWI3YS00N2I0LWEyYTktOTJjM2YzOTc3ZDNlXkEyXkFqcGc@._V1_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/muf454/muf454">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Mufasa:_The_Lion_King" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.8</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/muf454/muf454youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+
+
+
+
+
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="125" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>pushpa 2 the rule 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/pu5hp42/pu5hp42">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Pushpa_2:_The_Rule" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.5</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/pu5hp42/pu5hp42youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+
+
+
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="124" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Singham again 2 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMjQzZDExZDEtYjAxYy00ZGVhLWE4YWItNTVkZjA5ZjVjZWM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/51ngh4m2/51ngh4m2">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Singham_Again" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.5</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/51ngh4m2/51ngh4m2youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+	
+	
+	
+
+		
+		
+	<!--  Movie starts here -->		
+        <div class="left">
+            <div id="123" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Sucha Soorma punjabi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMDhmNWVlNjktMDk0YS00NzAwLTkwZmMtYjZlZWU5M2IwYWM4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/5uch4500rm4/5uch4500rm4">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/notfound" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.7</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/5uch4500rm4/5uch4500rm4youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+	
+
+
+
+
+
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="122" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Red One Rock 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZmFkMjE4NjQtZTVmZS00MDZjLWE2ZmEtZTkzODljNjhlNWUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/r3d0n3/r3d0n3">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Red_One_(film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.5</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/khvd/khvdyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+<!--  Movie starts here -->		
+        <div class="left">
+            <div id="104" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Venom 3-2024, 2-2021 hindi</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/v3n0m2/v3n0m2">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Venom:_Let_There_Be_Carnage" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.9</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="v3n0m2/v3n0m2youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+<!--  Movie starts here -->		
+        <div class="left">
+            <div id="118" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Murder in Mahim 2024 Jio premium</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMjA3MzZmMWItOGRjOS00YzRlLTljYWItMjE4NDMyZGMwODlmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/mim/mim">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Murder_In_Mahim" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.9</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/mim/mimyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+
+		
+
+
+
+<!--  Movie starts here -->		
+        <div class="left">
+            <div id="116" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>stree 1 , 2 hindi horror</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTA1NmUxYzItZmVmNy00YmQxLTk4Y2UtZjVkMWUwMWQ5N2IxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/5tr33/5tr33">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Stree_2" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.6</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/5tr33/5tr33youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="114" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>A Quiet Place Day One part 3 Hindi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNGZmODU3ZDEtMjQwZC00NTA5LThmNWYtYzk5MmY5ZmM4NGIxXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/qpdo/qpdo">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/A_Quiet_Place:_Day_One" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.3</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/qpdo/qpdoyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="113" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>kurdi haryane val di punjabi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMmMwZjJiYmItMGE3Yy00YmUyLWFjMzYtOGIxNzMzNTE1Nzk2XkEyXkFqcGc@._V1_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/khvd/khvd">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Kudi_Haryane_Val_Di" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.5</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/khvd/khvdyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="112" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Bad Newz hindi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZjIzYjY3ZTQtNjA3Yi00MTFiLWExM2ItNjYxZmI1ZjcyMTYxXkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/b4dn3wz/b4dn3wz">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Bad_Newz_(film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>5.4</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/b4dn3wz/b4dn3wzyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="111" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>House of Dragons Hindi Season 1</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/h0d/h0d">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/House_of_the_Dragon" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.4</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/h0d/h0dyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		<!--  Movie starts here -->		
+        <div class="left">
+            <div id="110" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Alien Romulus hindi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMDU0NjcwOGQtNjNjOS00NzQ3LWIwM2YtYWVmODZjMzQzN2ExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/al13nr0mulu5/al13nr0mulu5">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Alien:_Romulus" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.4</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/al13nr0mulu5/al13nr0mulu5youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg" >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        <!--  Movie starts here -->
+        <div class="left">
+            <div id="109" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Captain phillips hindi 2013</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODhiZWRhMjctNDUyMS00NmUwLTgwYmItMjJhOWNkZWQ3ZTQxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/c4pt41np/c4pt41np">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Captain_Phillips_(film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.8</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/c4pt41np/c4pt41npyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg"  >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		<!--  Movie starts here-->
+        <div class="left">
+            <div id="108" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Trap Eng subs 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMzJiN2UyZjgtMjQ3MS00MDhhLTg5ZDItZmVjMTU3MTcwNzE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/tr4p/tr4p">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Trap_(2024_film)" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>6.1</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/tr4p/tr4pyoutubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg"  >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!--  Movie starts here -->
+        <div class="left">
+            <div id="110" style="  margin : auto; width : 100%; text-align: center; ">
+                <h5><b>Inspector Rishi Season1 hindi 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYmY4NmQzMDUtYmE3My00NmI3LWFjNDMtYTNlZDA3ZmExM2UzXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg"
+                             alt="movie name" class="image" style="max-width: 100%; max-height:100%; ">
+                        <!-- copy above the poster link from gblo -->
+                    </div>
+
+                    <div class="middle">
+                        <div class="text">
+                            <!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->
+                            <a class='iframe' style=" font-size : 15px; color : blue; margin-right:5px " href="./movies/in5p3ct0rr15h1/in5p3ct0rr15h1">
+                                <!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+                                <img src="movies/pics/watchlivesmall.png" alt="Image" width="100" height="50" class="centerimg">
+                            </a>
+                            <!-- imdb -->
+
+                            <p>
+                                <h2>
+                                    <a class='vimeo' style=" font-size : 15px; color : blue; color:red;
+										" href="https://en.wikipedia.org/wiki/Inspector_Rishi" target="_self">
+                                        <!-- paste here the imdb pic from gblo hktest14.blo.com-->
+                                        <img src="movies/pics/imdb2.png" alt="Image" width="50" height="25" class="centerimg">
+                                        <!--	 this is live cam pic -->
+                                        <b>7.2</b>
+                                    </a>
+                                </h2>
+                            </p>
+
+                            <!-- xxxx imdb opens weblink as popup so idea dropped -->
+                            <!-- youtube trailer -->
+                            <p>
+                                <a class='youtube' style=" font-size : 15px; color : blue; " href="./movies/in5p3ct0rr15h1/in5p3ct0rr15h1youtubetrailer">
+                                    <img src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg"  >
+                                    <!--	 this is live cam pic -->
+                                </a>
+                            </p>
+                        </div><!-- id text -->
+                    </div><!-- id middle -->
+                </div> <!-- container -->
+            </div> <!-- id number -->
+        </div>	<!-- left movie movie ends here -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        <!--
+                <h1>Colorbox Demonstration</h1>
+
+                <h2>Other Content Types</h2>
+                <p><a class='iframe' href="http://wikipedia.com">Live Movie</a></p>
+                <p><a class='vimeo' href="../content/ajax.html" title="Homer Defined">Imdb wiki</a></p>
+                <p><a class='youtube' href="http://www.youtube.com/embed/VOJyrQa_WR4?rel=0&amp;wmode=transparent">Youtube Trailer</a></p>
+        -->
+
+
+
+
+    </div> <!-- div ultimate ends here -->
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+
+
+
+
+/* 
+labho 
+
+h5><b>kraven the hunter 2024</b></h5>
+                <div class="container">
+                    <div class="centered">
+                    </div>
+                    <!-- here you can add title to display on the center of the poster-->
+                    <div style="width: 280px ;  height : 280px; ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZDU0YTI5ODAtN2NmMS00YTg3LTgyNDItN2RmOWEzOTkzZjcyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+						
+*/
+
+  $(document).ready(function(){
+    var data = [
+	
+	
+	{"id":"142","employee_name":"whiteout 2025 sniper snow survival amazon rental hnd","employee_salary":"snow sniper survival action ","employee_age":"2025 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNmNiMDNlNjEtNDkyMC00NzI2LTk3OWEtYjQwZTNlMDM3ZmUyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	
+	{"id":"141","employee_name":"valiant one 2025 war amazon rental hnd","employee_salary":"war action cod ","employee_age":"2025 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZTQzMGU4NjAtNjVmMy00MDIwLWI2YTYtYjY3MTM2YzExMzJkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	
+	{"id":"140","employee_name":"crazxy bollywood 2025 amazon rental","employee_salary":"","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNmUxYWI0OGItZjY5Ny00MjgzLWIwYTItMWU4M2YzY2EzMDE2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"139","employee_name":"wolf man 2025 hindi amazon rental","employee_salary":"","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BYmFkYTNhMWUtMjEyNy00MWE0LWJlYTQtMWFmNDUwNmFjMzAxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	
+	{"id":"137","employee_name":"Rose rosy tey gulab punjabi 2025  ","employee_salary":"","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BYmRkMzQzOTUtYjBlMC00YTBiLThjMzEtMzAxYzZjOWUwZmY2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"136","employee_name":"Ni main sass kutni 2 punjabi 2025 ","employee_salary":"","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMTcwZTQ4MDUtNDg0Mi00MTJlLThmMjAtYjQ5MzBhOTRiN2MxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"135","employee_name":"the gorge eng 2025 apple tv+ ","employee_salary":"","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BOTQ5Y2QyYTktYmFmZi00NWJlLWE0MzgtYTA4M2I0ZjQwZjcxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	
+	{"id":"134","employee_name":"Raduaa returns punjabi 2024 ","employee_salary":"","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZWY1ZTMyZTUtZDA0Yi00NmQ3LThmNTAtY2VlNTZiZDVlYzYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"133","employee_name":"mere husband ki biwi 2025 arjun kapoor","employee_salary":"  ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNDgxNDlkYjgtMWZiZS00ZTk0LWIxNDMtYzZkYjQ5ZWI4OWYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	{"id":"132","employee_name":"Sikandar 2025 salman","employee_salary":"sikandar salman khan  ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZjc3NzQyMTItMjBkOS00NTE4LTk4NDMtNTRiYzdjN2U2N2QwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"131","employee_name":"Deva 2025 shahid","employee_salary":"Deva 2025 shahid kapoor action police cop ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZTllOTk2MDgtZmZmYy00MDBhLThiMzctNzhmNTk5ODdkZTcwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"129","employee_name":"kraven the hunter 2024","employee_salary":"gladiator action 2024 ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZDU0YTI5ODAtN2NmMS00YTg3LTgyNDItN2RmOWEzOTkzZjcyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"128","employee_name":"gladiator 2 hindi 2024","employee_salary":"gladiator action 2024 ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMWYzZTM5ZGQtOGE5My00NmM2LWFlMDEtMGNjYjdmOWM1MzA1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	
+	{"id":"127","employee_name":"blackia 2 punjabi 2024","employee_salary":"action punjabi actor ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNDc0MjJjMDAtNjE1My00NmMzLTg3YjYtYmQyNDVjMDMzNWJjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	
+	
+	{"id":"126","employee_name":"mufasa lion king 2024 hindi normal quality","employee_salary":"action voice shahrukh khan ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BYjBkOWUwODYtYWI3YS00N2I0LWEyYTktOTJjM2YzOTc3ZDNlXkEyXkFqcGc@._V1_.jpg"},
+	
+	
+	{"id":"125","employee_name":"pushpa 2 the rule 2024 others","employee_salary":"action allu arjun ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"124","employee_name":"Singham again 2 2024 prime rent","employee_salary":"action ajay devgan tigershroff ranbir kapoor akshay kumar deepika padukone karina kapoor","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMjQzZDExZDEtYjAxYy00ZGVhLWE4YWItNTVkZjA5ZjVjZWM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"123","employee_name":"Sucha Soorma punjabi 2024 others","employee_salary":"action punjabi babbu mann ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMDhmNWVlNjktMDk0YS00NzAwLTkwZmMtYjZlZWU5M2IwYWM4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"122","employee_name":"Red One Rock 2024 others","employee_salary":"Action christmas scifi rock john dwayson ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZmFkMjE4NjQtZTVmZS00MDZjLWE2ZmEtZTkzODljNjhlNWUxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+		{"id":"118","employee_name":"Murder in Mahim 2024 Jio premium","employee_salary":"mystery Action vijay raaz , ashutosh rana hindi ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMjA3MzZmMWItOGRjOS00YzRlLTljYWItMjE4NDMyZGMwODlmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"117","employee_name":"Tumbbad 2018 hindi horror","employee_salary":"mystery hindi horror ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMzVjNGFmZTMtYjRjNi00OWQzLTlkNWQtZmU1OGI0ODc2ODU5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"116","employee_name":"stree 1 , 2 hindi horror","employee_salary":"mystery hindi horror raj kumar rao , shradha kapoor ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMTA1NmUxYzItZmVmNy00YmQxLTk4Y2UtZjVkMWUwMWQ5N2IxXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"115","employee_name":"night manager 2023 Bollywood","employee_salary":"aditya roy kapoor, anil kapoor action mystery quiet place mystery action horror aliens ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZTIxMGY2YzgtMTNjMS00NGY3LWFmNmEtNmNkYmRjNGFiNDJiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	
+	{"id":"114","employee_name":"A Quiet Place part 3: Day One Hindi 2024","employee_salary":"quiet place mystery action horror aliens ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNGZmODU3ZDEtMjQwZC00NTA5LThmNWYtYzk5MmY5ZmM4NGIxXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg"},
+	
+	{"id":"113","employee_name":"kurdi haryane val di punjabi 2024","employee_salary":"ammy virk comedy Punjabi 2024","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMmMwZjJiYmItMGE3Yy00YmUyLWFjMzYtOGIxNzMzNTE1Nzk2XkEyXkFqcGc@._V1_.jpg"},
+	
+	{"id":"112","employee_name":"Bad Newz hindi 2024 bollywood","employee_salary":"Comedy , , mystery , Suspense , a","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZjIzYjY3ZTQtNjA3Yi00MTFiLWExM2ItNjYxZmI1ZjcyMTYxXkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_FMjpg_UX1000_.jpg"},
+	
+	{"id":"111","employee_name":"House of Dragons Hindi Season 1","employee_salary":"Action , Thriller , mystery , Suspense , dragon , game of thrones","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BM2QzMGVkNjUtN2Y4Yi00ODMwLTg3YzktYzUxYjJlNjFjNDY1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+	
+	{"id":"110","employee_name":"Alien Romulus hindi 2024","employee_salary":"Action , Thriller , mystery , Suspense , aliens ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMDU0NjcwOGQtNjNjOS00NzQ3LWIwM2YtYWVmODZjMzQzN2ExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+
+	{"id":"109","employee_name":"Trap eng subs 2024","employee_salary":"Action , Thriller , mystery , Suspense ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMzJiN2UyZjgtMjQ3MS00MDhhLTg5ZDItZmVjMTU3MTcwNzE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+
+	{"id":"108","employee_name":"Captain phillips hindi 2013","employee_salary":"Toms hanks - Action , Thriller , mystery , true story ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BODhiZWRhMjctNDUyMS00NmUwLTgwYmItMjJhOWNkZWQ3ZTQxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg"},
+
+
+	{"id":"107","employee_name":"Inspector Rishi Season1 hindi 2024","employee_salary":"Horro , Thriller  Thriller ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BYmY4NmQzMDUtYmE3My00NmI3LWFjNDMtYTNlZDA3ZmExM2UzXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"106","employee_name":"Eternals marvel hindi 2021","employee_salary":"Marvels , angelina joli Action Thriller ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZTBiZjI2M2UtZTNiNy00NmU4LWJiMjYtZjk4MDIzMzhlMjFlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"105","employee_name":"The Strangers Chapter 1 English Subtitles 2024 ","employee_salary":"Thriller , Horror, Actors : Madelaine PetschRyan BownMatus Lajcak, Director Renny Harlin  ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMjkxMDFlNjctZmEzYS00NjA3LWExNDUtNmI4ZDM2ZGQyNzYzXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"104","employee_name":"Venom 3-2024, 2-2021 hindi ","employee_salary":"Marvel Marvels Action , Sci-Fi , Venom 2 hindi 2024 ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZDMyYWU4NzItZDY0MC00ODE2LTkyYTMtMzNkNDdmYmFhZDg0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"103","employee_name":"Kingdom of planet of Apes hindi 2024 ","employee_salary":"Action apes chimpanze monkey  Kingdom of planet of Apes hindi 2024F ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZGI4NTEwNTAtZDcwMi00MDkxLTg1OGYtNTZmMzE3ZDljNzVlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"102","employee_name":"bad boys 2 hindi 2024 ","employee_salary":"will smith action comedy bad boys 2 hindi 2024 ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BZmU4NzVkZjEtZmQxMi00ZDY5LWI3ZDYtMWRmZjE5YmYwZjQzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"101","employee_name":"Godzilla X Kong New Empire hindi 2024 ","employee_salary":"god zilla godzilla king kong  kingkong ","employee_age":"2024 ","profile_image":"https://upload.wikimedia.org/wikipedia/en/b/be/Godzilla_x_kong_the_new_empire_poster.jpg"},
+
+	{"id":"42","employee_name":"Tera kya hoga lovely hindi 2024 ","employee_salary":"Randeep Huda comedy ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BNmE5NWMwNTEtYzYzNS00OWU3LTk1YzQtZTVlZjMxNThiMDRkXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"43","employee_name":"gyaarah gyaarah 11 11 Season 1 hindi 2024 ","employee_salary":"Action Raghav 10 episodes","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BY2JiOTlhYTUtZTk5Zi00MjA1LTkxYmQtOTgyODJmNmJmYmZlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"44","employee_name":"Kalki 2898AD Hindi 2024 ","employee_salary":"Kalki 2898AD prabhas , amitabh , kamal hasan Hindi 2024","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BMTM3ZGUwYTEtZTI5NS00ZmMyLTk2YmQtMWU4YjlhZTI3NjRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"45","employee_name":"madgaon express goa comedy Hindi 2024 ","employee_salary":"madgaon express goa comedy Hindi 2024","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BYWQyYzVhZGItZDQ3YS00MGMyLWEyNTMtMTE2N2YwYWRlNzRhXkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"46","employee_name":"maharaja south vijay sethupati Hindi 2024 ","employee_salary":"maharaja south vijay sethupati Hindi 2024 ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BOTFlMTIxOGItZTk0Zi00MTk2LWJiM2UtMzlhZWYzNjQ4N2Y3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"},
+
+	{"id":"266","employee_name":"mirzapur season 3 Hindi ","employee_salary":"mirzapur season 3 Hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2024 ","profile_image":"https://m.media-amazon.com/images/M/MV5BN2NlNGYwYTUtMTczMi00NGVjLTgwMzUtNjBkZjIyNDc2NjcxXkEyXkFqcGdeQXVyODQ5NDUwMDk@._V1_FMjpg_UX1000_.jpg"},
+{"id":"77","employee_name":"bloody daddy shahid kapoor movie Hindi ","employee_salary":"bloody daddy shahid kapoor  hindi 2023 movie Hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgJDqka50TkTdNIaUB_Y6ys5h0Ma9Une5qdwJKmzHUqDeJ5GUnYWWatDuo7UO3ijF3leit-VXI4MEd9mNsUVkzG-mJOretgPgAsRBgUidA2IE-cOs_s_yls8fLLDO0v0nI9RVgltsaqa0N0DWwJRqPHBOJrPEGtqT_h8lgHJ6uhOkMKVV5o4Kp8OWok/s80/bloodydaddylogo.jpg"},
+{"id":"78","employee_name":"scream 6 movie Hindi ","employee_salary":"scream6 hindi 2023 movie Hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSHQZe8l__cmJtAvlCtIQCZaAAokpwGxBLamWUg2eAeFRWLJAUq4NGMKJTtp-SFwlln3b0rvHzhW7ZxUTReHN6QHIBsJLDCUK5b1oHCCbW1JgZZpuWl9MA_9wpQmJbKnkqdLy5E85-yd5Jbo9fNOTZ8jmD4RdtSdVUkT9BIxOOKDDDvLaQUiVPQZfL/s80/scream6logo.jpg"},
+{"id":"79","employee_name":"Super Mario 2023 movie Hindi ","employee_salary":"Super Mario 2023 movie Hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhStkfK2M_Ev28zsawyOOW1AKZv3_Bv4eO3Gs8gypFsRZ7Qccd1GoaIpUWzc0emri0nGRy20xMuBbKA278T3iT60KZ5dPwI7A4tItKb6flz7SGAYsqxAFND72pnKUIw6xtdRGfXoKOlHaqtGTFTqgebzy6CxrM2_pDi3SBnapHCmbQBzkB2AHdwA6n5/s80/supermariologo.jpg"},
+{"id":"80","employee_name":"michael south action hindi movie Hindi 2023 ","employee_salary":"michael south action hindi movie 2023  // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjB0TfooTDuidFFms9OEfuZZHbK2SoczR__D-ldOT0b2ETziEBv5usPlpGMqI3yWxD0hzesdUVpRCBytruusqKBOAVXKG8uub0rw-nUGqWuJgXQ2vtAQl6vbF35OKaKDeJG51XqO1J1WzvWd_F4sELSUfwCC1oNfIhmoIbcDxWrFa7HoqszlLUqBMiz/s80/michaellogo.jpg"},
+{"id":"81","employee_name":"renfield nicolas cage dracula Hindi 2023 ","employee_salary":"renfield nicolas cage dracula Hindi 2023  // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjikRE_CT1SRcwk4G4kOXGihUInXvSWfb2vtEOb3bYVGKvYnbVAEk5TuCRf8h0oPi9SCaryPA7GtcNq6uGmXXM4Rze0fArDmwkOcUgFtIVf6zYavSirYEnOhw8oovvfh_DeyjvsohlRa9alcykFbgTbGfyT0dGO5raK_qnFi-aJ_-qlG-5d82huCYg1/s80/renfieldlogo.jpg"},
+{"id":"82","employee_name":"65 adam driver Hindi 2023 ","employee_salary":"65 adam driver Hindi 2023 2023 hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBKz6PVsjNOFk2DU4NKDGp2oZisGv2G7wA-72diY45BpMw0Lo3ryDlPvYU5ywg4q4182BxLfybyp561AWMOkmRGikplB2tXswuvpBFawtbQVqkYV-1rPj4bOnl0MnUXHw7ya-2w_RCGys7hgxFThf4uPfnGeNms1Kkx5O3qwqrPcMwYWiW-uVlBsvR/s80/65logo.jpg"},
+{"id":"83","employee_name":"Dungeons and Dragons Hindi 2023 ","employee_salary":"Dungeons and Dragons Hindi 2023 2023 hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEAVCp_grK_S10kCy2swjf1g0VtWs5rHH4ujJ6YWwdEvWtG-oetZ0gaJVC59LZRxyRfdpsTY2RnbY1m9EOAeCAOv9cxl7HFnNQ55lglQQoI5f_P8o0nCE14FUMoUbb9OzmBBfG79KJmF_z9x-Olq1ECGewKsF2RCXjLO9krZiUQ_mnhO9roJMRg2CG/s80/dungeonslogo.jpg"},
+{"id":"84","employee_name":"bhediya 2023 hindi ","employee_salary":"bhediya varun dhawan  2023 hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiz5LwaC9hMK9nY1qq7VqPrnxwJTDlvgx5qOOiWosN2rrpWxzgwbau3gf2Y4_GmBgXugkts6owHw620Ij3yv6KzqayRQpfJawYYzqFxWQMuEmvxyBPkCM9jhw5VQYGDsLe2NiU8-uNTCFPSHNTCGsM7uw--SbQlBtpOJIuRgIkcr2j8H2rUGT2hhNMK/s80/bh3d1y4logo.jpg"},
+{"id":"85","employee_name":"the kerala story 2023 hindi ","employee_salary":"the kerala story  2023 hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhyZeTVAkKDk1T6OuN7wslxNkn_2wFYGuRTnuhkWBjS_ln5CVPNB4QHryL65IjujmcBL80jbO9xFoed0yl9lUK96bA0VmKqQ5h85rbnTTapL_4AlZ0mJMWYmxhntB0p75DMQOvm_SKxVjLRPMII5eF_RCRZxIFz1rp9wDiKwj-LR1wWI0e4zEnjrliN/s80/kerala%20logo.jpg"},
+{"id":"86","employee_name":"cocaine bear 2023 hindi ","employee_salary":"cocaine bear 2023 hindi // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhf7azaeGhHvjMJNS9FGF_nXeEHIaO4gVmbP2Y85FXMJkc8U3-nxWD8nT5v4VYQs7-5FRRuT_XJ8LcqR3muK9cQx3FutHAp39N3-UNF-i57eBQdlirOWQgImiIQPu9sc1T6P1shA3jxav11frMnTblZPEIwyhPuMHQYNPy8GpZ4m8wzl8Zh0UzLLFA9/s80/Cocaine%20Bear%20(2023)%20%7BHindiEnglish%7D%20720p%20%20logo.jpg"},
+{"id":"87","employee_name":"Alien Quite Place  ","employee_salary":"Alien Quite Place // Imdb Rating 7.1 // 2023 / Action Adventure ","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjundV4ilgZPEg67P5rVaLatgWblReK9UxQDnptlsADcRRzRADvysIDgxrzQv60Qq4xB77G_tBF_8etKvDADirXWWUb3aSUxl79YADoTlpWE6s-sXaE3u09wFQufecst93frAsPpq-sSV4RXfXUeFxEkJelFOPHDkKwZfNq28JI__uO9OpeNHxmQOHZ/s80/kali%20jotta%20logo.jpg"},
+{"id":"88","employee_name":"Kali Jotta punjabi neeru bajwa","employee_salary":"Kali Jotta punjabi neeru bajwa // Imdb Rating 7.1 // 2023 / Action Adventure Neeru bajwa","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjundV4ilgZPEg67P5rVaLatgWblReK9UxQDnptlsADcRRzRADvysIDgxrzQv60Qq4xB77G_tBF_8etKvDADirXWWUb3aSUxl79YADoTlpWE6s-sXaE3u09wFQufecst93frAsPpq-sSV4RXfXUeFxEkJelFOPHDkKwZfNq28JI__uO9OpeNHxmQOHZ/s80/kali%20jotta%20logo.jpg"},
+{"id":"89","employee_name":"John Wick hindi 1,2,3","employee_salary":"John Wick hindi 1,2,3 // Imdb Rating 7.1 // 2023 / Action Adventure Keunu Reaves","employee_age":"2023 ","profile_image":"https://blogger.googleusercontent.com/img/a/AVvXsEhLTlUFViCW4DqoiK0uQlcQdwGlsJg8mQ2feuu9rS8I4DDtZm3Li6g1mBfEWwGuCEXMx7v6GWf5YuzzjCQIdb4-BTIjHGb7aaxB1DBwqLIcHQ6avU1Etx21bkBk86bBtJmGh7v_ENf2B4xZ0b7tl2dw6FJHz-mkEhzLAj6hJHOOcJ7KeHeK0oNSTcLf"},
+{"id":"90","employee_name":"Antman & Wasp Quantumania hindi 2023","employee_salary":"Antman & Wasp Quantumania 2023 hindi 2023 // Imdb Rating 6.4 // 2023 / Action Adventure Bhuvan Bam","employee_age":"2023 ","profile_image":"/movies/4n5m4nqu4n5um4n14/4n5m4nqu4n5um4n14logo.png"},
+{"id":"91","employee_name":"Taaza Khabar Bhivan Baam BB ki vines 2023","employee_salary":"Taaza Khabar Bhivan Baam BB ki vines 2023 // Imdb Rating 7.1 // 2022 / Action Adventure Bhuvan Bam","employee_age":"2023 ","profile_image":"/movies/544z4kh4b4r/544z4kh4b4rlogo.png"},
+{"id":"92","employee_name":"An Action Hero ayushmann khurana 2022","employee_salary":"An Action Hereo  // Imdb Rating 7.1 // 2022 / Action Adventure ayushmann khurana","employee_age":"2022 ","profile_image":"/movies/4n4c510nh3r0/4n4c510nh3r0logo.png"},
+{"id":"93","employee_name":"farzi season1 2023 shahid kapoor","employee_salary":"farzi season 1  // Imdb Rating 8.5 // 2023 / Action Adventure shahid kapoor","employee_age":"2023 ","profile_image":"/movies/f4rz1/f4rz1logo.png"},
+{"id":"94","employee_name":"vadh hindi movie 2023 ","employee_salary":"vadh hindi 2023 // Imdb Rating 7.4 // 2022 / Action Adventure ","employee_age":"2022 ","profile_image":"/movies/v4dh/v4dhlogo.png"},
+{"id":"95","employee_name":"black adam hindi dub 2022 rock ","employee_salary":"black adam hindi dub 2022 // Imdb Rating 7.4 // 2022 / Action Adventure ","employee_age":"2022 ","profile_image":"/movies/bl4ck4d4m/bl4ck4d4mlogo.png"},
+{"id":"96","employee_name":"prey predator 5 hindi dub ","employee_salary":"prey predator 5 hindi dub 2022 // Imdb Rating 7.4 // 2022 / Action Adventure ","employee_age":"2022 ","profile_image":"/movies/pr3y/pr3ylogo.png"},
+{"id":"97","employee_name":"ni main sass kuttni punjabi ","employee_salary":" ni main sass kuttni punjabi 2022 // Imdb Rating 5.4 // 2022 / Comedy Drama ","employee_age":"2022 ","profile_image":"/movies/n1m41n/n1m41nlogo.png"},
+{"id":"98","employee_name":"ni main sass kuttni punjabi ","employee_salary":" ni main sass kuttni punjabi 2022 // Imdb Rating 5.4 // 2022 / Comedy Drama ","employee_age":"2022 ","profile_image":"/movies/n1m41n/n1m41nlogo.png"},
+{"id":"99","employee_name":"batman","employee_salary":" batman 2022 // Imdb Rating 7.9 // 2022 / Action Crime Drama ","employee_age":"2022 ","profile_image":"/movies/b47m4n/b47m4nlogo.png"},
+{"id":"100","employee_name":"dune","employee_salary":" dune 2022 // Imdb Rating 8.1 // 2022 / Timothée Chalamet ","employee_age":"2022 ","profile_image":"/movies/dun3/dun3logo.png"},
+{"id":"101","employee_name":"matrix ressurection","employee_salary":" matrix ressurection part 4 // Imdb Rating 7.5 // 2022 / kenu reives ","employee_age":"61 ","profile_image":"/movies/m47r1x/m47r1xlogo.png"},
+{"id":"102","employee_name":"flames","employee_salary":"flames season 1 , 2 // imdb 9.3 // 2021 / ritvik ","employee_age":"63","profile_image":"/movies/fl4m35/fl4m35logo.png"},
+{"id":"103","employee_name":"KGF 1","employee_salary":"KGF 1 // imdb 8.3 // 2018 / South Indian Hindi Dub  ","employee_age":"66","profile_image":"/movies/fgk/fgklogo.png"},
+{"id":"104","employee_name":"Loki","employee_salary":"Loki Season 1 , 2 // imdb 8.3 / 2021 / marvel studios hindi dub ","employee_age":"22","profile_image":"default_profile.png"},
+{"id":"105","employee_name":"Bhoot Police","employee_salary":"Bhoot Police // imdb 5.3 / 2021 / bollywood / saif ali khan , arjun kapoor","employee_age":"33","profile_image":"default_profile.png"},
+{"id":"106","employee_name":"Puaada","employee_salary":"372000","employee_age":"61","profile_image":"default_profile.png"},
+{"id":"107","employee_name":"Happy Hardy Heer ","employee_salary":"137500","employee_age":"59","profile_image":"default_profile.png"},
+{"id":"108","employee_name":"Sanak","employee_salary":"327900","employee_age":"55","profile_image":"default_profile.png"},
+{"id":"109","employee_name":"Colleen Hurst","employee_salary":"205500","employee_age":"39","profile_image":"default_profile.png"},
+{"id":"110","employee_name":"Sonya Frost","employee_salary":"103600","employee_age":"23","profile_image":"default_profile.png"}];
+
+$('#txt-search').keyup(function(){
+            var searchField = $(this).val();
+			if(searchField === '')  {
+				$('#filter-records').html('');
+				return;
+			}
+            var regex = new RegExp(searchField, "i");
+            var output = '<div class="row">';
+            var count = 53;
+									/* fetch current url w3 code : <script>
+
+									this works for https://playmovies.online , as slicing is done for 26
+									if website domain changes then count the number of characters in it and then change 26 to 28 or something else
+
+										document.getElementById("demo").innerHTML =
+										"The full URL of this page is:<br>" + window.location.href;
+										slice the string
+										let text = "Hello world!";
+										let result = text.slice(3);
+										https://playmovies.online/play117   : total are 26 charachters to skip so that we can fetch on last play117 or page name
+
+										let text = "https://playmovies.online/mani#267#56";
+										let result = text.slice(0, 26);   ---
+										slice(0,26 ) splits the url upto desired number // result is https://playmovies.online/
+
+										if found # then
+										{
+										2nd time search is different
+										let pageurlnamefetchafterwards = "https://playmovies.online/mani#267#56"
+										let pageurlnamefetchafterwards = window.location.href;
+										let pageurlnamefetchafterwardsposition = text.search("#");
+										//this seraches for # at which position -say 30
+										let pageurlnamefetchafterwardssliced = text.slice(0, pageurlnamefetchafterwardsposition);
+										}
+
+										else not found #
+										{
+										let pageurlnamefetch =  window.location.href;
+										let pageurlnameminus =  pageurlnamefetch.slice(26);
+
+										}
+
+									*/
+				let pageurlname = window.location.href;
+				let pageurlnamefetchhashposition = pageurlname.search("#");
+				//alert (pageurlnamefetchhashposition);
+
+						if (pageurlnamefetchhashposition>0)
+						{
+							//alert ("entered hash");
+							let pageurlnamefetchafterwards = window.location.href;
+							let n = pageurlnamefetchhashposition;
+							//alert(n);
+							let pageurlnamefetchafterwardssliced = pageurlnamefetchafterwards.slice(0, n);
+							//alert ("sliced : "+pageurlnamefetchafterwardssliced);
+
+							let pageurlnameminusafterwardsslicedagain =  pageurlnamefetchafterwardssliced.slice(26);
+							//alert ( pageurlnameminusafterwardsslicedagain+"#"+":   foundhash");
+							pageurlname = pageurlnameminusafterwardsslicedagain+"#";
+							//alert ("finished hash");
+						}
+
+						else if(pageurlnamefetchhashposition<0)
+						{
+								//alert ("entered into no hash else");
+								let pageurlnamefetch =  window.location.href;
+								let pageurlnameminus =  pageurlnamefetch.slice(26);
+								//alert (pageurlnameminus+"#"+"nohash");
+								pageurlname = pageurlnameminus+"#";
+						}
+
+
+		/*	var scrollto = + val.id + ; */
+			  $.each(data, function(key, val){
+				if ((val.employee_salary.search(regex) != -1) || (val.employee_name.search(regex) != -1)) {
+
+
+				/*  output += '<div id="clicksearch"  onclick="location.href="''" >'; */
+
+
+			output += '<div id="clicksearch"  onclick="location.href=\''+ pageurlname + + val.id + '\'  "; style="cursor: pointer; background-color: #FFFF00; ">';
+
+			/*	 final code -- ok working to scroll to specific movies after clicking and searching in json */
+           /*
+			<!-- output += '<div id="clicksearch"  onclick="location.href=\''+ pageurlname + + val.id + '\'  "; style="cursor: pointer;">';    -->
+			<!-- added by me to search scroll  // <div onclick="location.href='#';" style="cursor: pointer;">-->
+			<!-- 2 or more var val variable s  output += '<h5>'+ pageurlname + + val.id + '</h5>';  -->
+			 <!--output += '<div class="col-md-3"><img class="img-responsive" src="'+val.profile_image+'" alt="'+ val.employee_name +'" /></div>'; -->
+           */
+				  output += '<div class="col-md-6 well">';
+				  /* style img height and width is the icon of the searched all movies */
+				  output += '<div class="col-md-3"><img class="img-responsive" style="width:110px ; height: 110px;" src="'+val.profile_image+'" alt="'+ val.employee_age +'" /></div>';
+				  output += '<div class="col-md-7">';
+			/*  output += '<h5>'+ pageurlname + + val.id + '</h5>';   */
+				  output += '<p><b>' + val.employee_name + '</b></p>'
+				  output += '<p>' + val.employee_salary + '</p>'
+				  output += '</div>';
+				  output += '</div>';
+
+				  /* scroll div ended */
+				  output += '</div>';
+
+
+				  if(count%2 == 0){
+					output += '</div><div class="row">'
+				  }
+				  count++;
+				}
+			  });
+			  output += '</div>';
+			  $('#filter-records').html(output);
+
+        });
+  });
+</script>
+
+<!-- live search ends -->
+
+
+

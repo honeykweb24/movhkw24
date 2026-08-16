@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>Movies</title>
+		<!--<style>
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>-->		
+		<style>
+		<!-- here a.link{text-decoration:none;} stops from underlines the imdb and live image -->		
+			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
+			a:link{text-decoration:none; };, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
+			h2{font-size:13px; margin:15px 0 0 0;}
+		</style>
+		<!-- ref for ajax search bar -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  		<!-- live search ends -->
+		
+		<link rel="stylesheet" href="colorbox.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				$(".group1").colorbox({rel:'group1'});
+				$(".group2").colorbox({rel:'group2', transition:"fade"});
+				$(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+				$(".group4").colorbox({rel:'group4', slideshow:true});
+				$(".ajax").colorbox();
+				
+				<!-- iframe for live movies , vimeo for imdb, youtube for trailers -->
+				$(".youtube").colorbox({iframe:true, innerWidth:320, innerHeight:290});
+				$(".vimeo").colorbox({iframe:true, innerWidth:450, innerHeight:600});
+				$(".iframe").colorbox({iframe:true, width:"350px", height:"550px"});
+				
+				$(".inline").colorbox({inline:true, width:"50%"});
+				$(".callbacks").colorbox({
+					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+				});
+
+				$('.non-retina').colorbox({rel:'group5', transition:'none'})
+				$('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+				
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>		
+		<!-- color box css and js ended -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .youtubetrailertext {  
+  font-size: 30px;
+  color: blue ;}
+  
+  .left {
+  float: left;
+  width: auto;
+  height: auto;
+  border: 1px solid #ffffff00 ;  <!-- 3px solid #73AD21   //   transparent code : #ffffff00 , black is #000000-->
+  padding: 10px;}
+
+.container {
+  position: relative;
+  width: 100%;   <!-- this width decides the size of the poster small or larger . for gallery look like it should be 70% -->
+  text-align: center;
+  color: white; }  <!-- all text color inside the poster is white -->    
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color : white ; 
+  size : h4 ;
+  font-size : 30px;
+  font-weight : bold ;}
+
+.image {
+  opacity: 1;
+  display: block;
+  width:100% ;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;}
+<!--  code to make these links work on toucha and hover pc  // hover first then active 
+ .info-slide:hover, .info-slide:active{
+   height:300px;} --> 
+ .container:hover  .image,  .container:active .image {   
+  opacity: .6; }<!-- this just lightens up the image to greyish -->
+
+.container:hover  .middle,  .container:active .middle {
+  opacity: 1; }<!-- this brings the live into visibility -->
+
+.text {
+  background-color: transparent;   <!-- this is the background color behinf text  #04AA6D green color -->
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;}  
+  <!-- different from colorbox it just centers the item -->  
+  .centerimg {
+  display: block;
+  margin : auto;
+  width : 100%;
+  text-align: center;}
+  </style>
+  
+</head>
+<body class="page" id="page"  onload="dcm();" oncontextmenu="return false">
+<div id="ultimate">
+
+		<!-- live search  starts -->		
+		<div class="left1" style="position : relative;  z-index : 998; ">
+			<div class="searchbar" style="padding:50px 50px; ">
+					<h1> Search Movie</h1>	<!--download page only -->					
+					<form role="form">
+						<div class="form-group" style="  height:100px;" >						   
+							<input type="input" class="form-control input-lg" id="txt-search" placeholder="Type your search character"style="width:200px ; height:50px;">						   
+						</div>
+					</form><!-- this filter records is to show the founded match of movies -->					  
+						<div id="filter-records" style="height : 70px;  z-index: 999; position : relative;">
+						</div> 
+			</div>
+		</div>
+<!-- live search ends-->
+<!--a href="./downloadmovies"> DOWN </a> shuru -->
+
+
+		<!--  Movie starts here-->
+	<div class="left">
+		<div id="108"style="  margin : auto; width : 100%; text-align: center; "><h5><b>Captain phillips hindi 2013</b></h5>
+			<div class="container">
+					<div class="centered"> 
+					</div>
+						<!-- here you can add title to display on the center of the poster-->
+					<div style="width: 280px ;  height : 280px;">
+					<img src="https://m.media-amazon.com/images/M/MV5BODhiZWRhMjctNDUyMS00NmUwLTgwYmItMjJhOWNkZWQ3ZTQxXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg"
+					alt="movie name" class="image" style="max-width: 100%; max-height:100%;">
+					<!-- copy above the poster link from gblo -->
+					</div>
+		  
+					<div class="middle">
+						<div class="text">	
+						<!-- Movie 3  Starts -->	<!--Live  Movie watch 	style="margin-right:5px"-->						
+								<a class='iframe' style=" font-size : 15px; font-color : blue; margin-right:5px " href="./movies/c4pt41np/c4pt41np"><b>							
+							<!--	<a class='iframe' href="./movies/bbb3/bbb303s02e"> Episode.02</a> </b>-->
+										<img  src="movies/pics/watchlivesmall.png" alt="Image"  width="100px" height="50px"  		class="centerimg" >	
+										</img>						 
+								</a>							
+							<!-- imdb -->
+								<h2><p>
+								<a class='vimeo' style=" font-size : 15px; font-color : blue; color:red;
+									" href="https://en.wikipedia.org/wiki/Captain_Phillips_(film)" target="_self" >
+									<!-- paste here the imdb pic from gblo hktest14.blo.com-->	
+									<img  src="movies/pics/imdb2.png" alt="Image"  width="50px" height="25px"  class="centerimg"> </img>
+									<!--	 this is live cam pic -->
+									<b>7.8<b>
+								</a></p></h2>		
+							<!-- xxxx imdb opens weblink as popup so idea dropped -->					
+							<!-- youtube trailer -->		
+								<p><a class='youtube' style=" font-size : 15px; font-color : blue; " href=		"./movies/c4pt41np/c4pt41npyoutubetrailer"  >
+										<img  src="movies/pics/youtubetrailer7.png" alt="Image" class="centerimg"></img>	
+									<!--	 this is live cam pic -->
+								</a></p>
+						</div><!-- id text -->
+					</div><!-- id middle -->
+			</div> <!-- container -->
+		</div> <!-- id number -->		
+	</div>	<!-- left movie movie ends here -->
+
+
+
+
+		<h1>Colorbox Demonstration</h1>
+		
+		<h2>Other Content Types</h2>
+		<p><a class='iframe' href="http://wikipedia.com">Live Movie</a></p>
+		<p><a class='vimeo' href="../content/ajax.html" title="Homer Defined">Imdb wiki</a></p>
+		<p><a class='youtube' href="http://www.youtube.com/embed/VOJyrQa_WR4?rel=0&amp;wmode=transparent">Youtube Trailer</a></p>
+		
+		
+		
+		
+
+</div> <!-- div ultimate ends here -->
+</body>
+</html>
+  

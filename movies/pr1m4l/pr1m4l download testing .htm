@@ -1,0 +1,153 @@
+<html>
+
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+</script>
+
+
+
+
+
+
+
+<script>
+function pressm2()
+		{
+
+	setTimeout(function() {
+	
+	
+	
+	
+	
+	
+	document.dispatchEvent(
+  new KeyboardEvent("keydown", {
+    key: "f",
+    keyCode: 70, // example values.
+    code: "KeyF", // put everything you need in this object.
+    which: 70,
+    shiftKey: false, // you don't need to include values
+    ctrlKey: false,  // if you aren't going to use them.
+    metaKey: false   // these are here for example's sake.
+	
+  })
+)
+document.getElementById("demo").innerHTML += e.key;
+	
+								/*							
+								$(document).ready(()=>{
+															//document.getElementById("odysee-iframe").focus();
+															//document.getElementByName("ifra").focus();
+														   let e = $.Event('keypress');
+														   e.key = 'f';
+														  // document.getElementByName("ifra").focus();
+														   //document.getElementById("odysee-iframe").focus();
+														   	document.getElementById("username").focus();
+														   $("username").trigger(e);
+														//	document.getElementById("odysee-iframe").focus();
+														   $(document).trigger(e);
+														   // document.getElementByName("ifra").focus();
+														//  document.getElementById("odysee-iframe").focus();
+														   //document.getElementBytabindex("ifra").innerHTML += e.key;
+														   document.getElementById("demo").innerHTML += e.key;
+														   
+															 
+													   });
+								
+								
+								
+								
+							/*
+	
+							$(function () {
+							
+								
+								document. getElementById("box"). focus();
+								var e = $.Event('keypress');
+								//e.key = 'f';
+								e.which = 70; // Character 'm'
+								document. getElementById("box"). focus();
+								$(document).trigger(e);
+								//sleep(2000);
+								document. getElementById("box"). focus();
+								document.getElementById("demo").innerHTML = e;
+								//alert("okl");
+							});
+							
+							
+							*/
+						  } 
+			,4000);		  
+	    }
+
+
+
+  function pressm()
+		{
+   
+	    // sleep 7 sec
+		 //sleep(3000); 
+		 
+		 
+//		 https://www.toptal.com/developers/keycode  javascript code for m keycode is 77 , right arrow is 39 , enter key is 17 
+		//$(window).load(function()  {
+		
+    //var e = $.Event('keydown', { keyCode: 77 });// right arrow key
+
+
+
+
+
+
+
+ /*
+   var e = $.Event('keydown', { keyCode: 77 });// right arrow key
+    
+setTimeout(function() {
+    $(document).trigger(e);
+             }, 6000);
+            
+			const myJSON = JSON.stringify(e);
+	alert(myJSON);
+}
+   
+   */
+   
+   // $(document).trigger(e);
+    //         alert("m pressd"s);
+		
+	}
+  
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+
+<div id="ifra" tabindex="2";>
+<iframe id="odysee-iframe" tabindex="1" name="ifra" width="560" height="315" src="https://odysee.com/$/embed/@honeykweb11:2/tr4n5f0rm3r5-2023-1bg-72p:3?r=5u5fhdojVbT7sBBbcQqi1jUqCoDQMkmj&autoplay=true" allowfullscreen></iframe>
+</div>
+
+
+<div>
+<button class="buttonep" id="button" tabindex="3";  onclick="pressm2();">mute</button>
+			<button class="buttonep" tabindex="4"; onclick="">f</button>
+			 <input type="text" id="username"/>
+			<p id="demo" tabindex="5"; >oo</p>
+	</div>		
+			
+			
+			
+</body>
+
+</html>
